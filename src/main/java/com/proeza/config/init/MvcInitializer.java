@@ -1,4 +1,4 @@
-package com.proeza.sgs.config.init;
+package com.proeza.config.init;
 
 import java.io.IOException;
 

@@ -25,6 +25,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import com.proeza.config.init.MvcInitializer;
 import com.proeza.core.datamapper.DataSourceMapper;
 import com.proeza.core.datamapper.DataSourceMapperFacade;
 import com.proeza.core.datamapper.exception.DataMappingException;
@@ -38,7 +39,6 @@ import com.proeza.sgs.business.entity.Clase;
 import com.proeza.sgs.business.entity.Marca;
 import com.proeza.sgs.business.entity.Rubro;
 import com.proeza.sgs.business.entity.Tipo;
-import com.proeza.sgs.config.init.MvcInitializer;
 import com.proeza.sgs.config.root.ContextConfig;
 
 @Transactional
