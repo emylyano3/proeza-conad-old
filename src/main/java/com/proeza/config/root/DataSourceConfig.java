@@ -1,4 +1,4 @@
-package com.proeza.sgs.config.root;
+package com.proeza.config.root;
 
 import javax.sql.DataSource;
 

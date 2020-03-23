@@ -9,8 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.proeza.config.env.Environments;
+import com.proeza.config.root.ContextConfig;
 import com.proeza.sgs.business.scheduling.JobRelevamiento;
-import com.proeza.sgs.config.root.ContextConfig;
 
 @Transactional
 @ActiveProfiles("dev")

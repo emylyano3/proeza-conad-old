@@ -10,8 +10,8 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import com.proeza.config.dispatcher.WebMvcConfig;
 import com.proeza.config.env.Environments;
+import com.proeza.config.root.ContextConfig;
 import com.proeza.sgs.config.ConfigConsts;
-import com.proeza.sgs.config.root.ContextConfig;
 
 public class MvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

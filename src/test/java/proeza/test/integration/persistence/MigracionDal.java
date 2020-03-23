@@ -23,6 +23,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import proeza.test.integration.IntegrationTest;
 
+import com.proeza.config.root.ContextConfig;
 import com.proeza.sgs.business.dao.impl.ClaseDao;
 import com.proeza.sgs.business.dao.impl.RubroDao;
 import com.proeza.sgs.business.dao.impl.TipoDao;
@@ -30,7 +31,6 @@ import com.proeza.sgs.business.entity.Articulo;
 import com.proeza.sgs.business.entity.Clase;
 import com.proeza.sgs.business.entity.Rubro;
 import com.proeza.sgs.business.entity.Tipo;
-import com.proeza.sgs.config.root.ContextConfig;
 
 @ActiveProfiles(profiles = "prod")
 @RunWith(SpringJUnit4ClassRunner.class)

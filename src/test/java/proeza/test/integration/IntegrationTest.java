@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.proeza.config.env.Environments;
 import com.proeza.config.init.MvcInitializer;
-import com.proeza.sgs.config.root.ContextConfig;
+import com.proeza.config.root.ContextConfig;
 
 @Transactional
 @ActiveProfiles("test")

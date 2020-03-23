@@ -1,11 +1,11 @@
 var usuario = {
 	rest : {
-		find : '/proeza-sgs/rest/usuario/find',
-		findAll : '/proeza-sgs/rest/usuario/findAll',
-		create : '/proeza-sgs/rest/usuario/create',
-		update : '/proeza-sgs/rest/usuario/update',
-		remove : '/proeza-sgs/rest/usuario/delete',
-		setPhoto : '/proeza-sgs/rest/usuario/setPhoto',
-		getPhoto : '/proeza-sgs/rest/usuario/getPhoto',
+		find : '/proeza-conad/rest/usuario/find',
+		findAll : '/proeza-conad/rest/usuario/findAll',
+		create : '/proeza-conad/rest/usuario/create',
+		update : '/proeza-conad/rest/usuario/update',
+		remove : '/proeza-conad/rest/usuario/delete',
+		setPhoto : '/proeza-conad/rest/usuario/setPhoto',
+		getPhoto : '/proeza-conad/rest/usuario/getPhoto',
 	}
 }

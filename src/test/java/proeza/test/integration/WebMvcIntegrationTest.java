@@ -10,7 +10,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.proeza.config.dispatcher.WebMvcConfig;
 import com.proeza.config.env.Environments;
-import com.proeza.sgs.config.root.ContextConfig;
+import com.proeza.config.root.ContextConfig;
 
 @WebAppConfiguration
 @ContextConfiguration(classes = {Environments.class, WebMvcConfig.class, ContextConfig.class})

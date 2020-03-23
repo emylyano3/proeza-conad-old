@@ -27,6 +27,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.util.StringUtils;
 
 import com.proeza.config.init.MvcInitializer;
+import com.proeza.config.root.ContextConfig;
 import com.proeza.core.datamapper.exception.DataMappingException;
 import com.proeza.core.resources.image.ImageManager;
 import com.proeza.core.service.IImageService;
@@ -44,7 +45,6 @@ import com.proeza.sgs.business.entity.Rubro;
 import com.proeza.sgs.business.entity.Tipo;
 import com.proeza.sgs.business.entity.builder.CodeBuilder;
 import com.proeza.sgs.business.service.impl.ArticuloService;
-import com.proeza.sgs.config.root.ContextConfig;
 
 @Transactional
 @ActiveProfiles(profiles = "prod")

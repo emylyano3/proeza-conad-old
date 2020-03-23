@@ -1,6 +1,6 @@
 var menu = {
 	rest : {
-		lastMonthsSales : '/proeza-sgs/rest/sales/stats/userLastMonthsSales'
+		lastMonthsSales : '/proeza-conad/rest/sales/stats/userLastMonthsSales'
 	}
 }
 $(document).ready(function() {

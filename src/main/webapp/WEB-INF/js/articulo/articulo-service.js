@@ -2,7 +2,7 @@ var gridSource;
 var currentRow = -1;
 var formMode;
 
-var baseRest = '/proeza-sgs/rest/product';
+var baseRest = '/proeza-conad/rest/product';
 
 var product = {
 	rest : {
@@ -37,7 +37,7 @@ var product = {
 		deleteCategory : baseRest + '/deleteCategory',
 		getCategories : baseRest + '/getCategories',
 		find : baseRest + '/find',
-		quickSale : '/proeza-sgs/rest/venta/quickSale',
+		quickSale : '/proeza-conad/rest/venta/quickSale',
 		bestSellers : baseRest + '/stats/bestSellers',
 		worstSellers : baseRest + '/stats/worstSellers',
 		brandPresence : baseRest + '/stats/brandPresence',
