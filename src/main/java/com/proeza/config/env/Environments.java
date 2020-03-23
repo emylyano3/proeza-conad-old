@@ -1,4 +1,4 @@
-package com.proeza.sgs.config.env;
+package com.proeza.config.env;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;

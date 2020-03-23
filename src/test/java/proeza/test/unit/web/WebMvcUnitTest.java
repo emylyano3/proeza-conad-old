@@ -8,10 +8,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.proeza.config.dispatcher.WebMvcConfig;
+
 import proeza.test.unit.AbstractUnitTest;
 import proeza.test.unit.UnitTestContext;
-
-import com.proeza.sgs.config.dispatcher.WebMvcConfig;
 
 /**
  * Arquitectura de testing unitario para la parte web de la aplicacion.<br/>
@@ -24,15 +24,15 @@ import com.proeza.sgs.config.dispatcher.WebMvcConfig;
 @ContextConfiguration(classes = {UnitTestContext.class, WebMvcConfig.class})
 @WebAppConfiguration
 public abstract class WebMvcUnitTest extends AbstractUnitTest {
-    protected MockMvc             mockMvc;
+	protected MockMvc             mockMvc;
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+	@Autowired
+	private WebApplicationContext webApplicationContext;
 
-    @Before
-    @Override
-    public void setUp () {
-        super.setUp();
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-    }
+	@Before
+	@Override
+	public void setUp () {
+		super.setUp();
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+	}
 }

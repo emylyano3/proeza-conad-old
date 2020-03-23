@@ -6,7 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.proeza.sgs.config.env.Environments;
+import com.proeza.config.env.Environments;
 import com.proeza.sgs.config.init.MvcInitializer;
 import com.proeza.sgs.config.root.ContextConfig;
 

@@ -44,7 +44,7 @@ import com.proeza.sgs.config.root.ContextConfig;
 @Transactional
 @ActiveProfiles(profiles = "prod")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {com.proeza.sgs.config.env.Prod.class, ContextConfig.class}, loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = {com.proeza.config.env.Prod.class, ContextConfig.class}, loader = AnnotationConfigContextLoader.class)
 public class MciPescalotodo {
     private static Logger          log         = Logger.getLogger(MciPescalotodo.class);
 

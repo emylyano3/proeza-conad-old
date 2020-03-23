@@ -1,4 +1,4 @@
-package com.proeza.sgs.config.env;
+package com.proeza.config.env;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
