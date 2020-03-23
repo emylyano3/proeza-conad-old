@@ -39,9 +39,6 @@
 		<commons-io-version>2.4</commons-io-version>
 		<guava-version>18.0</guava-version>
 	</properties>
-	<prerequisites>
-		<maven>2.2.1</maven>
-	</prerequisites>
 	<profiles>
 		<profile>
 			<id>dev</id>
