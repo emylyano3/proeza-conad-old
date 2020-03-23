@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="Emiliano Schiano di Cola" />
+
+    <div th:replace ="fragment/misc.html::appTitle"/>
+	<div th:replace ="fragment/misc.html::appIcon"/>
+
+    <link href="../../../resources/bootstrap/css/bootstrap.css" th:href="@{/resources/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
+    <link href="../../../resources/app/css/proeza-sgs.css" th:href="@{/resources/app/css/proeza-sgs.css}" rel="stylesheet"/>
+	<link href="../../../resources/animate/css/animate.css" th:href="@{/resources/animate/css/animate.css}" rel="stylesheet" />
+    <link href="../../../resources/font-awesome/css/font-awesome.css" th:href="@{/resources/font-awesome/css/font-awesome.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body class="blank">
+	<div class="color-line"></div>
+    <div class="logout-container">
+        <div class="row">
+            <div class="col-md-12">
+            	<div class="text-center m-b-md">
+	                <h3 th:text="#{user.msg.goodbye}" text="Gracias por utilizar SGS" />
+	            </div>
+	            <div class="hpanel">
+	                <div class="panel-body">
+						<div th:if="${logoutMsg != null}" class="alert alert-info text-center" >
+							<span th:text="${logoutMsg}" />
+						</div>
+						<p/>
+						<form action="#" th:action="@{home}">
+							<button class="btn btn-success btn-block" th:text="#{control.gohome}" text="Ir al inicio" />
+						</form>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../resources/jquery/jquery.js" th:src="@{/resources/jquery/jquery.js}"/>
+    <script src="../../../resources/bootstrap/js/bootstrap.js" th:src="@{/resources/bootstrap/js/bootstrap.js}"/>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bootstrap HTML Test</title>
+<link rel="stylesheet" href="../src/main/webapp/resources/bootstrap/css/bootstrap-theme.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../src/main/webapp/resources/bootstrap/css/bootstrap.css" type="text/css" media="screen" />
+</head>
+<body>
+
+	<div>
+		<p class="greeting-id">The ID is</p>
+		<p class="greeting-content">The content is</p>
+	</div>
+
+	<script src="../src/main/webapp/resources/jquery/jquery.js"></script>
+	<script src="../src/main/webapp/resources/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.ajax({
+				url : "http://localhost:8081/proeza-sgs/rest/articulo/priceHistory/1",
+				type : "POST",
+				dataType: 'jsonp',
+				contentType: 'application/json',
+				crossDomain: false
+			}).then(function(data) {
+				var obj = JSON.parse(data); 
+				console.log(obj);
+			});
+		});
+	</script>
+</body>
+</html>

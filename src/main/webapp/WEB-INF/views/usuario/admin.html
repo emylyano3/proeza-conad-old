@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Sistema de Gestión de Stock" />
+    <meta name="author" content="Emiliano Schiano di Cola" />
+
+	<div th:replace ="fragment/misc.html::appTitle"></div>
+	<div th:replace ="fragment/misc.html::appIcon"></div>
+
+    <link href="../../../resources/bootstrap/css/bootstrap.css" th:href="@{/resources/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+    <link href="../../../resources/metismenu/css/metisMenu.css" th:href="@{/resources/metismenu/css/metisMenu.css}" rel="stylesheet" />
+    <link href="../../../resources/app/css/timeline.css" th:href="@{/resources/app/css/timeline.css}" rel="stylesheet" />
+    <link href="../../../resources/animate/css/animate.css" th:href="@{/resources/animate/css/animate.css}" rel="stylesheet" />
+    <link href="../../../resources/font-awesome/css/font-awesome.css" th:href="@{/resources/font-awesome/css/font-awesome.css}" rel="stylesheet" type="text/css" />
+    <link href="../../../resources/gallery/css/blueimp-gallery.css" th:href="@{/resources/gallery/css/blueimp-gallery.css}" rel="stylesheet" />
+    <link href="../../../resources/gallery/css/blueimp-gallery-indicator.css" th:href="@{/resources/gallery/css/blueimp-gallery-indicator.css}" rel="stylesheet" />
+    <link href="../../../resources/jqx/css/jqx.base.css" th:href="@{/resources/jqx/css/jqx.base.css}" type="text/css" media="screen" rel="stylesheet" />
+    <link href="../../../resources/jqx/css/jqx.energyblueproeza.css" th:href="@{/resources/jqx/css/jqx.energyblueproeza.css}" type="text/css" media="screen" rel="stylesheet" />
+    <link href="../../../resources/fileinput/css/fileinput.css" th:href="@{/resources/fileinput/css/fileinput.css}" media="all" type="text/css" rel="stylesheet" />
+	<link href="../../../resources/jqx/css/jqx.base.css" th:href="@{/resources/jqx/css/jqx.base.css}" type="text/css" media="screen" rel="stylesheet" />
+	<link href="../../../resources/jqx/css/jqx.energyblueproeza.css" th:href="@{/resources/jqx/css/jqx.energyblueproeza.css}" type="text/css" media="screen" rel="stylesheet" />
+	<link href="../../../resources/fileinput/css/fileinput.css" th:href="@{/resources/fileinput/css/fileinput.css}" media="all" type="text/css" rel="stylesheet" />
+    <link href="../../../resources/app/css/proeza-sgs.css" th:href="@{/resources/app/css/proeza-sgs.css}" rel="stylesheet" />
+</head>
+
+<body class="fixed-navbar fixed-sidebar">
+    <div th:replace="fragment/misc.html::splash"></div>
+	<div th:replace="fragment/misc.html::loadImagePopup"></div>
+    <div th:replace="fragment/bar.html::header"></div>
+    <div th:replace="fragment/menu.html::mainMenuLeft" ></div>
+	
+	<div id="wrapper">
+		<div th:replace="fragment/misc.html::pageTitle"></div>
+		<div id="content" class="content animate-panel container-fluid">
+            <!-- Grilla de usuarios -->
+            <div id="gridPanel" class="row">
+                <div class="col-md-12">
+					<div id="gridUsuarios"></div>
+                </div> 
+            </div>
+            <div id="editionPanel" class="hpanel" hidden="true">
+                <div class="panel-heading">
+                    <span id="formTitle" />
+                </div>
+                <div class="panel-body">
+                    <form id="userForm" class="form-horizontal" >
+                        <div class="row">
+                            <div class="col-md-6">                           
+                                <div class="form-group">
+                                    <label for="alias" class="col-sm-2 control-label" th:text="#{control.username}" />
+                                    <div class="col-sm-10">
+                                        <input id="alias" class="form-control input-md" required="required" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre" class="col-sm-2 control-label" th:text="#{control.name}" />
+                                    <div class="col-sm-10">
+                                        <input id="nombre" class="form-control input-md" required="required" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido" class="col-sm-2 control-label" th:text="#{control.lastname}" />
+                                    <div class="col-sm-10">
+                                        <input id="apellido" class="form-control input-md" required="required" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label" th:text="#{control.email}" />
+                                    <div class="col-sm-10">
+                                        <input id="email" type="email" class="form-control input-md" required="required" />
+                                    </div>
+                                </div>
+                                <div id="passwordGroup" class="form-group" >
+                                    <label for="password" class="col-sm-2 control-label" th:text="#{control.password}" />
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input id="password" class="form-control input-md" disabled="disabled" />
+                                            <span class="input-group-btn">
+                                                <button id="btnGenerate" class="btn btn-default" th:text="#{control.generatepass}" type="button" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="roles" class="col-sm-2 control-label" th:text="#{control.roles}" />
+                                    <div class="col-sm-10">
+                                        <select id="roles" class="form-control input-md" multiple="multiple" required="required" >
+                                            <option th:each="role : ${roles}" th:text="${role.nombre}" th:value="${role.codigo}" />
+                                        </select>
+                                    </div>
+                                </div>
+                                <p/>
+                                <p/>
+                                <button id="cancel" type="button" class="btn btn-default" th:text="#{control.cancel}" />
+                                <button id="save" type="submit" class="btn btn-primary" th:text="#{control.save}" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <span id="formFooter" />
+                </div>
+            </div>
+           
+            <!-- Menu Contextual -->
+            <div id="gridMenu">
+                <ul>
+                    <li id="editUsu" th:text="#{user.admin.menu.edit}"/>
+                    <li id="deleteUsu" th:text="#{user.admin.menu.remove}"/>
+                    <li id="newUsu" th:text="#{user.admin.menu.create}"/>
+                    <li id="setPhoto" th:text="#{user.admin.menu.setPhoto}"/>
+                </ul>
+           </div>
+           <div id="commandBar" class="floating">
+               <button id="newUser" class="btn fa fa-plus fa-3x btn-plus" th:title="#{user.add.tooltip}"/>
+           </div>
+        </div>
+		<div th:replace="fragment/misc.html::footer"/>
+    </div>
+    <script type="text/javascript" src="../../../resources/jquery/jquery.js" th:src="@{/resources/jquery/jquery.js}" ></script>
+    <script type="text/javascript" src="../../../resources/bootstrap/js/bootstrap.js" th:src="@{/resources/bootstrap/js/bootstrap.js}" ></script>
+    <script type="text/javascript" src="../../../resources/metismenu/js/metisMenu.js" th:src="@{/resources/metismenu/js/metisMenu.js}" ></script>
+    <script type="text/javascript" src="../../../resources/sparkline/js/sparkline.js" th:src="@{/resources/sparkline/js/sparkline.js}"></script>
+    <script type="text/javascript" src="../../../resources/icheck/icheck.js" th:src="@{/resources/icheck/icheck.js}"></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxcore.js" th:src="@{/resources/jqx/js/jqxcore.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxdata.js" th:src="@{/resources/jqx/js/jqxdata.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxbuttons.js" th:src="@{/resources/jqx/js/jqxbuttons.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxscrollbar.js" th:src="@{/resources/jqx/js/jqxscrollbar.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxmenu.js" th:src="@{/resources/jqx/js/jqxmenu.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxgrid.js" th:src="@{/resources/jqx/js/jqxgrid.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxgrid.selection.js" th:src="@{/resources/jqx/js/jqxgrid.selection.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxnumberinput.js" th:src="@{/resources/jqx/js/jqxnumberinput.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxwindow.js" th:src="@{/resources/jqx/js/jqxwindow.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxlistbox.js" th:src="@{/resources/jqx/js/jqxlistbox.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxdropdownlist.js" th:src="@{/resources/jqx/js/jqxdropdownlist.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxinput.js" th:src="@{/resources/jqx/js/jqxinput.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jqx/js/jqxgrid.sort.js" th:src="@{/resources/jqx/js/jqxgrid.sort.js}" ></script>
+    <script type="text/javascript" src="../../../resources/jquery/jquery.inputmask.bundle.js" th:src="@{/resources/jquery/jquery.inputmask.bundle.js}" ></script>
+    <script type="text/javascript" src="../../../resources/bootstrap/js/bootstrap-notify.js" th:src="@{/resources/bootstrap/js/bootstrap-notify.js}" ></script>
+    <script type="text/javascript" src="../../../resources/fileinput/js/fileinput.js" th:src="@{/resources/fileinput/js/fileinput.js}" ></script>
+    <script type="text/javascript" src="../../../resources/fileinput/js/fileinput_locale_es.js" th:src="@{/resources/fileinput/js/fileinput_locale_es.js}" ></script>
+    <script type="text/javascript" src="../../../resources/password/js/pGenerator.jquery.js" th:src="@{/resources/password/js/pGenerator.jquery.js}" ></script>
+
+    <script type="text/javascript" src="../js/proeza-sgs.js" th:src="@{/js/proeza-sgs.js}" ></script>
+    <script type="text/javascript" src="../js/menu.js" th:src="@{/js/menu.js}" ></script>
+    <script type="text/javascript" src="../js/usuario/usuario-service.js" th:src="@{/js/usuario/usuario-service.js}" ></script>
+    <script type="text/javascript" src="../js/usuario/usuario-abm.js" th:src="@{/js/usuario/usuario-abm.js}" ></script>
+</body>
+</html>

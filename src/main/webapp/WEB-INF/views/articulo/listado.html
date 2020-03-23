@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Sistema de Gestión de Stock" />
+	<meta name="author" content="Emiliano Schiano di Cola" />
+
+	<div th:replace ="fragment/misc.html::appTitle"></div>
+	<div th:replace ="fragment/misc.html::appIcon"></div>
+
+	<link href="../../../resources/bootstrap/css/bootstrap.css" th:href="@{/resources/bootstrap/css/bootstrap.css}" rel="stylesheet" />
+	<link href="../../../resources/metismenu/css/metisMenu.css" th:href="@{/resources/metismenu/css/metisMenu.css}" rel="stylesheet" />
+	<link href="../../../resources/app/css/timeline.css" th:href="@{/resources/app/css/timeline.css}" rel="stylesheet" />
+	<link href="../../../resources/animate/css/animate.css" th:href="@{/resources/animate/css/animate.css}" rel="stylesheet" />
+	<link href="../../../resources/app/css/proeza-sgs.css" th:href="@{/resources/app/css/proeza-sgs.css}" rel="stylesheet" />
+	<link href="../../../resources/font-awesome/css/font-awesome.css" th:href="@{/resources/font-awesome/css/font-awesome.css}" rel="stylesheet" type="text/css" />
+	<link href="../../../resources/gallery/css/blueimp-gallery.css" th:href="@{/resources/gallery/css/blueimp-gallery.css}" rel="stylesheet" />
+	<link href="../../../resources/gallery/css/blueimp-gallery-indicator.css" th:href="@{/resources/gallery/css/blueimp-gallery-indicator.css}" rel="stylesheet" />
+	<link href="../../../resources/jqx/css/jqx.base.css" th:href="@{/resources/jqx/css/jqx.base.css}" type="text/css" rel="stylesheet" />
+	<link href="../../../resources/jqx/css/jqx.energyblueproeza.css" th:href="@{/resources/jqx/css/jqx.energyblueproeza.css}" type="text/css" media="screen" rel="stylesheet" />
+</head>
+
+<body class="fixed-navbar fixed-sidebar">
+    <div th:replace="fragment/misc.html::imageGallery"></div>
+    <div th:replace="fragment/misc.html::splash"></div>
+    <div th:replace="fragment/bar.html::header"></div>
+    <div th:replace="fragment/menu.html::mainMenuLeft" ></div>
+    
+	<div id="wrapper">
+		<div th:replace="fragment/misc.html::pageTitle"></div>
+		<div id="content" class="content animate-panel container-fluid">
+	        <!-- Grilla de articulos -->
+			<div id="gridPanel" class="row animated zoomIn">
+				<div class="col-md-12">
+			        <div id="productGrid"></div>
+				</div>
+			</div>
+	        <p/>
+			<div id="thumbnailsPanel" class="row">
+				<div class="col-md-12">
+				    <div id="links"></div>
+				</div>
+			</div>
+	        <div th:if="${CONTEXT_PROD_LIST_GRID} != null" id="gridContextMenu">
+	            <ul>
+	                <li th:each="item : ${CONTEXT_PROD_LIST_GRID.items}" th:id="${item.code}" >
+	                    <span th:text="${item.text}" th:remove="tag"/> 
+	                    <ul th:if="${!item.subitems.isEmpty()}" >
+	                        <li th:each="subitem : ${item.subitems}" th:id="${subitem.code}" th:text="${subitem.text}"/>
+	                    </ul>
+	                </li>
+	            </ul>
+	        </div>
+	        <div th:unless="${CONTEXT_PROD_LIST_GRID} != null" id="gridContextMenu">
+	        	
+	        </div>
+		</div>
+		<div th:replace="fragment/misc.html::footer"/>
+	</div>
+	
+	<script type="text/javascript" src="../../../resources/jquery/jquery.js" th:src="@{/resources/jquery/jquery.js}" ></script>
+    <script type="text/javascript" src="../../../resources/bootstrap/js/bootstrap.js" th:src="@{/resources/bootstrap/js/bootstrap.js}" ></script>
+	<script type="text/javascript" src="../../../resources/metismenu/js/metisMenu.js" th:src="@{/resources/metismenu/js/metisMenu.js}" ></script>
+    <script type="text/javascript" src="../../../resources/sparkline/js/sparkline.js" th:src="@{/resources/sparkline/js/sparkline.js}"></script>
+    <script type="text/javascript" src="../../../resources/icheck/icheck.js" th:src="@{/resources/icheck/icheck.js}"></script>
+	<script type="text/javascript" src="../../../resources/jqx/js/jqxcore.js" th:src="@{/resources/jqx/js/jqxcore.js}" ></script>
+	<script type="text/javascript" src="../../../resources/jqx/js/jqxdata.js" th:src="@{/resources/jqx/js/jqxdata.js}" ></script>
+	<script type="text/javascript" src="../../../resources/jqx/js/jqxbuttons.js" th:src="@{/resources/jqx/js/jqxbuttons.js}" ></script>
+	<script type="text/javascript" src="../../../resources/jqx/js/jqxscrollbar.js" th:src="@{/resources/jqx/js/jqxscrollbar.js}" ></script>
+	<script type="text/javascript" src="../../../resources/jqx/js/jqxmenu.js" th:src="@{/resources/jqx/js/jqxmenu.js}" ></script>
+	<script type="text/javascript" src="../../../resources/jqx/js/jqxgrid.js" th:src="@{/resources/jqx/js/jqxgrid.js}" ></script>
+	<script type="text/javascript" src="../../../resources/jqx/js/jqxgrid.selection.js" th:src="@{/resources/jqx/js/jqxgrid.selection.js}" ></script>
+	<script type="text/javascript" src="../../../resources/jqx/js/jqxgrid.sort.js" th:src="@{/resources/jqx/js/jqxgrid.sort.js}" ></script>
+	<script type="text/javascript" src="../../../resources/jqx/js/jqxgrid.columnsresize.js" th:src="@{/resources/jqx/js/jqxgrid.columnsresize.js}" ></script>
+    <script type="text/javascript" src="../../../resources/bootstrap/js/bootstrap-notify.js" th:src="@{/resources/bootstrap/js/bootstrap-notify.js}" ></script>
+	<script type="text/javascript" src="../../../resources/gallery/js/blueimp-gallery.js" th:src="@{/resources/gallery/js/blueimp-gallery.js}"></script>
+	<script type="text/javascript" src="../../../resources/gallery/js/blueimp-gallery-indicator.js" th:src="@{/resources/gallery/js/blueimp-gallery-indicator.js}"></script>
+	<script type="text/javascript" src="../../../resources/gallery/js/jquery.blueimp-gallery.js" th:src="@{/resources/gallery/js/jquery.blueimp-gallery.js}"></script>
+
+	<script type="text/javascript" src="../js/proeza-sgs.js" th:src="@{/js/proeza-sgs.js}" ></script>
+	<script type="text/javascript" src="../js/menu.js" th:src="@{/js/menu.js}" ></script>
+	<script type="text/javascript" src="../js/articulo/articulo-service.js" th:src="@{/js/articulo/articulo-service.js}" ></script>
+	<script type="text/javascript" src="../js/articulo/articulo-view.js" th:src="@{/js/articulo/articulo-view.js}" ></script>
+</body>
+</html>

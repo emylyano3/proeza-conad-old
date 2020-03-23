@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" 
+	updateCheck="false"
+	monitoring="autodetect" 
+	dynamicConfig="false">
+
+<defaultCache 
+	maxEntriesLocalHeap="10000" 
+	eternal="false"
+	timeToIdleSeconds="120" 
+	timeToLiveSeconds="120" 
+	diskSpoolBufferSizeMB="30"
+	maxEntriesLocalDisk="10000000" 
+	diskExpiryThreadIntervalSeconds="120"
+    memoryStoreEvictionPolicy="LRU" 
+    statistics="true"/>
+    
+<cache
+    name="com.proeza.security.entity.Usuario"
+    maxElementsInMemory="100"
+    eternal="true"
+    statistics="true" />
+
+<cache
+    name="com.proeza.security.entity.Rol"
+    maxElementsInMemory="50"
+    eternal="true"
+    statistics="true" />
+    
+<cache
+    name="com.proeza.sgs.system.entity.Page"
+    maxElementsInMemory="100"
+    eternal="true"
+    statistics="true" />
+    
+<cache
+    name="com.proeza.sgs.system.entity.Menu"
+    maxElementsInMemory="50"
+    eternal="true"
+    statistics="true" />
+
+<cache
+    name="com.proeza.sgs.business.entity.MedioPago"
+    maxElementsInMemory="5"
+    eternal="true"
+    statistics="false" />
+    
+<cache
+    name="com.proeza.sgs.system.entity.Item"
+    maxElementsInMemory="300"
+    eternal="true"
+    statistics="true" />
+    
+<cache
+    name="com.proeza.sgs.business.entity.Rubro"
+    maxElementsInMemory="50"
+    eternal="true"
+    statistics="true" />
+    
+<cache
+    name="com.proeza.sgs.business.entity.Clase"
+    maxElementsInMemory="200"
+    eternal="true"
+    statistics="true" />
+    
+<cache
+    name="com.proeza.sgs.business.entity.Marca"
+    maxElementsInMemory="300"
+    eternal="true"
+    statistics="true" />
+    
+<cache
+    name="com.proeza.sgs.business.entity.Tipo"
+    maxElementsInMemory="300"
+    eternal="true"
+    statistics="true" />
+    
+<cache
+    name="com.proeza.sgs.business.entity.Articulo"
+    maxElementsInMemory="1000"
+    eternal="false"
+    statistics="true" 
+    memoryStoreEvictionPolicy="LRU"/>
+
+<cache
+    name="userPageMenus"
+    maxElementsInMemory="500"
+    timeToLiveSeconds="600"
+    statistics="true" 
+    memoryStoreEvictionPolicy="LRU"/>
+
+<cache 
+	name="org.hibernate.cache.internal.StandardQueryCache"
+    maxEntriesLocalHeap="100" 
+    eternal="false" 
+    timeToLiveSeconds="600"
+    statistics="true"/>
+
+<cache 
+	name="org.hibernate.cache.spi.UpdateTimestampsCache"
+    maxEntriesLocalHeap="5000" 
+    eternal="true"
+    statistics="false"/>
+
+</ehcache>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true" xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<!-- Sistema -->
+	<appender name="sistema" class="org.apache.log4j.AsyncAppender">
+		<param name="BufferSize" value="5096" />
+		<appender-ref ref="sistema-rolling" />
+	</appender>
+
+	<appender name="sistema-rolling" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/logs/proeza/sistema.log" />
+		<param name="MaxFileSize" value="1MB" />
+		<param name="MaxBackupIndex" value="5" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %d{HH:mm:ss,SSS} [%t] %C: %m%n" />
+		</layout>
+	</appender>
+
+	<!-- Arquitectura -->
+	<appender name="arquitectura" class="org.apache.log4j.AsyncAppender">
+		<param name="BufferSize" value="5096" />
+		<appender-ref ref="arquitectura-rolling" />
+	</appender>
+
+	<appender name="arquitectura-rolling" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/logs/proeza/arquitectura.log" />
+		<param name="MaxFileSize" value="1MB" />
+		<param name="MaxBackupIndex" value="5" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %d{HH:mm:ss,SSS} [%t] %C: %m%n" />
+		</layout>
+	</appender>
+	
+	<category name="com.proeza">
+		<priority value="INFO" />
+	</category>
+
+	<category name="org.springframework">
+		<priority value="WARN" />
+		<appender-ref ref="arquitectura"/>
+	</category>
+
+	<category name="org.hibernate">
+		<priority value="WARN" />
+		<appender-ref ref="arquitectura"/>
+	</category>
+
+	<category name="net.sf.ehcache">
+		<priority value="INFO" />
+		<appender-ref ref="arquitectura"/>
+	</category>
+
+	<category name="org.thymeleaf">
+		<priority value="WARN" />
+		<appender-ref ref="arquitectura"/>
+	</category>
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="sistema" />
+	</root>
+</log4j:configuration>
