@@ -3,7 +3,7 @@ package com.proeza.sgs.web;
 import com.proeza.core.classmapper.AbstractMapeable;
 import com.proeza.core.classmapper.annotation.Bind;
 import com.proeza.core.classmapper.annotation.Mapping;
-import com.proeza.sgs.system.service.dto.PageDTO;
+import com.proeza.system.service.dto.PageDTO;
 
 @Mapping(name = "DTO", type = PageDTO.class)
 public class PageConfig extends AbstractMapeable {

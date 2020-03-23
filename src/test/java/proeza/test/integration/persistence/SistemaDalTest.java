@@ -15,14 +15,14 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import proeza.test.integration.IntegrationTest;
 
 import com.proeza.core.i18n.entity.Traduccion;
-import com.proeza.sgs.system.dao.IItemDao;
-import com.proeza.sgs.system.dao.IPageDao;
-import com.proeza.sgs.system.entity.Item;
-import com.proeza.sgs.system.entity.ItemSubitem;
-import com.proeza.sgs.system.entity.Menu;
-import com.proeza.sgs.system.entity.MenuItem;
-import com.proeza.sgs.system.entity.Page;
 import com.proeza.sgs.web.controller.HomeController;
+import com.proeza.system.dao.IItemDao;
+import com.proeza.system.dao.IPageDao;
+import com.proeza.system.entity.Item;
+import com.proeza.system.entity.ItemSubitem;
+import com.proeza.system.entity.Menu;
+import com.proeza.system.entity.MenuItem;
+import com.proeza.system.entity.Page;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;

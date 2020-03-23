@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proeza.sgs.system.service.IMenuService;
-import com.proeza.sgs.system.service.dto.MenuDTO;
+import com.proeza.system.service.IMenuService;
+import com.proeza.system.service.dto.MenuDTO;
 
 @RestController
 @RequestMapping("rest/application")

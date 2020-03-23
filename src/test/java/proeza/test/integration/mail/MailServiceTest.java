@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import proeza.test.integration.IntegrationTest;
 
 import com.proeza.security.entity.builder.UsuarioBuilder;
-import com.proeza.sgs.system.mail.IMailManager;
+import com.proeza.system.mail.IMailManager;
 
 public class MailServiceTest extends IntegrationTest {
 

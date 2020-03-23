@@ -8,9 +8,9 @@ import org.springframework.test.util.ReflectionTestUtils;
 import proeza.test.unit.AbstractUnitTest;
 
 import com.proeza.security.dao.IUsuarioDao;
-import com.proeza.sgs.system.dao.IPageDao;
-import com.proeza.sgs.system.service.IMenuService;
-import com.proeza.sgs.system.service.impl.MenuService;
+import com.proeza.system.dao.IPageDao;
+import com.proeza.system.service.IMenuService;
+import com.proeza.system.service.impl.MenuService;
 
 public class ViewMenuManagerTest extends AbstractUnitTest {
 

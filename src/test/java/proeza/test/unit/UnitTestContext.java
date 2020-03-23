@@ -29,9 +29,9 @@ import com.proeza.sgs.business.service.IRubroService;
 import com.proeza.sgs.business.service.ITipoService;
 import com.proeza.sgs.business.service.IVentaChartService;
 import com.proeza.sgs.business.service.IVentaService;
-import com.proeza.sgs.system.dao.IPageDao;
-import com.proeza.sgs.system.mail.IMailManager;
-import com.proeza.sgs.system.service.IPageService;
+import com.proeza.system.dao.IPageDao;
+import com.proeza.system.mail.IMailManager;
+import com.proeza.system.service.IPageService;
 
 @Configuration
 public class UnitTestContext {

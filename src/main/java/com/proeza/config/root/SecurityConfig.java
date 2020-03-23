@@ -20,8 +20,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.proeza.security.entity.Rol;
-import com.proeza.sgs.system.dao.IPageDao;
-import com.proeza.sgs.system.entity.Page;
+import com.proeza.system.dao.IPageDao;
+import com.proeza.system.entity.Page;
 
 @Configuration
 @EnableWebSecurity

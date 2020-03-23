@@ -29,7 +29,7 @@ import com.proeza.security.dao.IUsuarioDao;
 import com.proeza.security.entity.Rol;
 import com.proeza.security.entity.Usuario;
 import com.proeza.security.entity.builder.UsuarioBuilder;
-import com.proeza.sgs.system.entity.Page;
+import com.proeza.system.entity.Page;
 
 import proeza.test.integration.IntegrationTest;
 

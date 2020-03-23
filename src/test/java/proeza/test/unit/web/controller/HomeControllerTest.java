@@ -10,16 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import proeza.test.unit.web.WebMvcUnitTest;
 
 import com.proeza.security.dao.IUsuarioDao;
-import com.proeza.sgs.system.dao.IPageDao;
-import com.proeza.sgs.system.entity.Item;
-import com.proeza.sgs.system.entity.Menu;
-import com.proeza.sgs.system.entity.MenuItem;
-import com.proeza.sgs.system.entity.Page;
-import com.proeza.sgs.system.service.IPageService;
-import com.proeza.sgs.system.service.dto.PageDTO;
+import com.proeza.system.dao.IPageDao;
+import com.proeza.system.entity.Item;
+import com.proeza.system.entity.Menu;
+import com.proeza.system.entity.MenuItem;
+import com.proeza.system.entity.Page;
+import com.proeza.system.service.IPageService;
+import com.proeza.system.service.dto.PageDTO;
 
-import static com.proeza.sgs.system.entity.MenuType.*;
 import static com.proeza.sgs.web.controller.HomeController.*;
+import static com.proeza.system.entity.MenuType.*;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;

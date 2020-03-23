@@ -18,10 +18,10 @@ import org.springframework.web.servlet.LocaleResolver;
 import com.proeza.core.classmapper.Mapeable;
 import com.proeza.security.form.UsuarioForm;
 import com.proeza.security.service.IUserService;
-import com.proeza.sgs.system.mail.IMailManager;
-import com.proeza.sgs.system.service.IPageService;
-import com.proeza.sgs.system.service.IMenuService;
 import com.proeza.sgs.web.PageConfig;
+import com.proeza.system.mail.IMailManager;
+import com.proeza.system.service.IMenuService;
+import com.proeza.system.service.IPageService;
 
 @Controller
 public class RegisterController {

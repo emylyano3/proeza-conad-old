@@ -8,9 +8,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.proeza.core.classmapper.Mapeable;
-import com.proeza.sgs.system.service.IPageService;
-import com.proeza.sgs.system.service.IMenuService;
 import com.proeza.sgs.web.PageConfig;
+import com.proeza.system.service.IMenuService;
+import com.proeza.system.service.IPageService;
 
 @Controller
 public class HomeController {

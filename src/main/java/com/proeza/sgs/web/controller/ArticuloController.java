@@ -14,9 +14,9 @@ import com.proeza.sgs.business.service.IClaseService;
 import com.proeza.sgs.business.service.IMarcaService;
 import com.proeza.sgs.business.service.IRubroService;
 import com.proeza.sgs.business.service.ITipoService;
-import com.proeza.sgs.system.service.IPageService;
-import com.proeza.sgs.system.service.IMenuService;
 import com.proeza.sgs.web.PageConfig;
+import com.proeza.system.service.IMenuService;
+import com.proeza.system.service.IPageService;
 
 @Controller
 @RequestMapping({"/articulo"})

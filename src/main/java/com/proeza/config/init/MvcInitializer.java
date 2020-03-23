@@ -8,10 +8,10 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.proeza.config.ConfigConsts;
 import com.proeza.config.dispatcher.WebMvcConfig;
 import com.proeza.config.env.Environments;
 import com.proeza.config.root.ContextConfig;
-import com.proeza.sgs.config.ConfigConsts;
 
 public class MvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

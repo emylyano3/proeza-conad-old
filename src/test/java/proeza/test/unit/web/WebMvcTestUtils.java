@@ -4,17 +4,17 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.proeza.sgs.system.entity.Item;
-import com.proeza.sgs.system.entity.Menu;
-import com.proeza.sgs.system.entity.MenuItem;
-import com.proeza.sgs.system.entity.MenuType;
-import com.proeza.sgs.system.entity.Page;
-import com.proeza.sgs.system.entity.builder.ItemBuilder;
-import com.proeza.sgs.system.entity.builder.MenuBuilder;
-import com.proeza.sgs.system.entity.builder.MenuItemBuilder;
-import com.proeza.sgs.system.entity.builder.PageBuilder;
+import com.proeza.system.entity.Item;
+import com.proeza.system.entity.Menu;
+import com.proeza.system.entity.MenuItem;
+import com.proeza.system.entity.MenuType;
+import com.proeza.system.entity.Page;
+import com.proeza.system.entity.builder.ItemBuilder;
+import com.proeza.system.entity.builder.MenuBuilder;
+import com.proeza.system.entity.builder.MenuItemBuilder;
+import com.proeza.system.entity.builder.PageBuilder;
 
-import static com.proeza.sgs.system.entity.MenuType.*;
+import static com.proeza.system.entity.MenuType.*;
 
 public class WebMvcTestUtils {
 
