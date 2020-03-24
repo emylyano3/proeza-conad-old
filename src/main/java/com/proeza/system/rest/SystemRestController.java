@@ -1,4 +1,4 @@
-package com.proeza.sgs.web.rest;
+package com.proeza.system.rest;
 
 import java.util.Locale;
 
@@ -14,8 +14,8 @@ import com.proeza.system.service.dto.MenuDTO;
 
 @CrossOrigin
 @RestController
-@RequestMapping("rest")
-public class AppManagementRestController {
+@RequestMapping("api")
+public class SystemRestController {
 
 	@Autowired
 	private IMenuService	menuService;

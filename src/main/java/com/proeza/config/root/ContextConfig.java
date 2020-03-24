@@ -66,7 +66,6 @@ import net.sf.ehcache.CacheException;
 	"com.proeza.security.service",
 	"com.proeza.sgs.business",
 	"com.proeza.system",
-	"com.proeza.system.service",
 }, excludeFilters = {
 	@Filter(Configuration.class),
 	@Filter(Controller.class),
