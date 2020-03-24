@@ -21,7 +21,7 @@ export class AuthService {
   }
   public isLoggedIn() {
     // return moment().isBefore(this.getExpiration());
-    return true;
+    return false;
   }
 
   public isLoggedOut() {

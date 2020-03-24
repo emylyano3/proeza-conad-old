@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AgGridAngular } from 'ag-grid-angular';
-import { ProvidedFilter } from 'ag-grid-community';
 
 @Component({
   selector: 'app-articulo-list',
