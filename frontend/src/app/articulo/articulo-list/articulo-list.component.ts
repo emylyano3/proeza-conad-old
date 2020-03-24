@@ -26,7 +26,7 @@ export class ArticuloListComponent implements OnInit {
   data: any;
 
   ngOnInit() {
-    this.data = this.http.get('http://localhost:8080/proeza-sgs/rest/product/search?filter=wat');
+    this.data = this.http.get('http://localhost:8080/proeza-conad/rest/product/search?filter=wat');
   }
 
   getSelectedRows() {

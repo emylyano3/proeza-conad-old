@@ -9,7 +9,7 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class MenuDataProviderService {
 
-  API_ENDPOINT = 'http://localhost:8080/proeza-sgs/api';
+  API_ENDPOINT = 'http://localhost:8080/proeza-conad/api';
 
   constructor(private http: HttpClient) { }
 

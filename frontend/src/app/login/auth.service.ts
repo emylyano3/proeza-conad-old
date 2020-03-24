@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  API_ENDPOINT = 'http://localhost:8080/proeza-sgs/api';
+  API_ENDPOINT = 'http://localhost:8080/proeza-conad/api';
 
   constructor() { }
   login(alias: string, password: string) {

@@ -1,5 +1,5 @@
 {
-  "name": "angular",
+  "name": "frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -20,7 +20,6 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
-    "@fortawesome/fontawesome-free": "^5.12.1",
     "@types/jquery": "^3.3.33",
     "ag-grid-angular": "^23.0.0",
     "ag-grid-community": "^23.0.1",
