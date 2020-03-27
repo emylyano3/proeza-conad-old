@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth/auth.service';
+import { AuthenticationService } from './auth/_services/authentication.service';
 
 @Component({
     selector: 'app-root',
@@ -9,12 +9,12 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
 
     constructor(
-        private authService: AuthService
-        ) {
+        private authService: AuthenticationService
+    ) {
     }
-    title = 'angular';
+    title = 'Proeza Conad';
 
-    isLoggedIn() {
-        return this.authService.isLoggedIn();
+    isLoggedIn(): boolean {
+        return this.authService.currentUserValue != null;
     }
 }

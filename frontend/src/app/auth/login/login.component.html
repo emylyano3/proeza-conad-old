@@ -1,4 +1,4 @@
-<div id="login-wrapper">
+﻿<div id="login-wrapper">
     <div class="color-line"></div>
     <div class="login-container">
         <div class="row">
@@ -9,8 +9,8 @@
                 </div>
                 <div class="hpanel">
                     <div class="panel-body">
-                        <div (show)="errorMessage" class="alert alert-danger" role="alert">{{errorMessage}}</div>
-                        <form [formGroup]="loginForm">
+                        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                             <div class="form-group">
                                 <label class="control-label" for="username" text="Usuario" i18n="@@control.username">User name</label>
                                 <input name="username" id="username" type="text" autofocus="autofocus" formControlName="username" i18n-placeholder="@@control.ph.username" class="form-control" required="required"/>
@@ -21,9 +21,10 @@
                                 <input name="password" id="password" type="password" formControlName="password" i18n-placeholder="@@control.ph.password" class="form-control" required="required" autocomplete="off"/>
                                 <span class="help-block small" i18n="@@login.passwordhelp">Your user password</span>
                             </div>
-                            <div class="form-buttons">
-                                <button class="btn btn-success btn-block" (click)="login()" i18n="@@control.login">Login</button>
-                            </div>
+                            <button [disabled]="loading" class="btn btn-primary">
+                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                Login
+                            </button>
                         </form>
                     </div>
                 </div>

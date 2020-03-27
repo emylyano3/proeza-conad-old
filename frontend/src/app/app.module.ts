@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,16 +14,37 @@ import { FooterComponent } from './footer/footer.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { ArticuloListComponent } from './articulo/articulo-list/articulo-list.component';
 import { HomeComponent } from './home/home/home.component';
+import { AuthGuard } from './auth/_helpers/auth.guard';
+import { LoginComponent } from './auth/login/login.component';
 
 import { MenuEntryDirective } from './main-menu/menu-entry.directive';
 
 import { MenuDataProviderService } from './main-menu/menu-data-provider.service';
-import { AuthService } from './auth/auth.service';
+import { AuthenticationService } from './auth/_services/authentication.service';
 
 // AGregado para tener la funcionalidad de menu contextual. 
 // Se puede reemplazar esa funcionalidad con una columna de Acciones en la grilla
 import 'ag-grid-enterprise';
 import * as $ from "jquery";
+
+
+// [ // TODO Mover al AppRoutingModule
+const routes: Routes = [
+  {
+    path: '', canActivateChild: [AuthGuard], children: [ // si esto no funciona, usar canActivateChild
+      { path: '', component: HomeComponent },
+      { path: 'articulo/listado', component: ArticuloListComponent },
+      { path: 'login', component: LoginComponent },
+    ]
+  }
+];
+// { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+// { path: 'home', component: HomeComponent },
+// { path: 'articulo/listado', component: ArticuloListComponent },
+// // { path: 'login', component: LoginComponent },
+// // otherwise redirect to home
+// { path: '**', redirectTo: '' }
+// ]
 
 @NgModule({
   imports: [
@@ -33,12 +54,7 @@ import * as $ from "jquery";
     HttpClientModule,
     AuthenticationModule,
     AgGridModule.withComponents([]),
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'home', component: HomeComponent },
-      { path: 'articulo/listado', component: ArticuloListComponent },
-    ],
-      { enableTracing: true })
+    RouterModule.forRoot(routes, { enableTracing: true })
   ],
   declarations: [
     AppComponent,
@@ -50,7 +66,7 @@ import * as $ from "jquery";
     ArticuloListComponent,
     HomeComponent
   ],
-  providers: [MenuDataProviderService, AuthService],
+  providers: [MenuDataProviderService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
