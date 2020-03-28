@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'articulo/listado', component: ArticuloListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' } // TODO Crear NotFound page (404)
 ];
 
 @NgModule({
