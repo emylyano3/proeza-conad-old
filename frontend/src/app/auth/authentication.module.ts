@@ -16,7 +16,7 @@ import { AuthGuard } from './_helpers';
     CommonModule,
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   exports: [LoginComponent],
   providers: [AuthenticationService, AuthGuard]

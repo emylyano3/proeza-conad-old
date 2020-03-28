@@ -1,5 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, Inject, Renderer2, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { AuthenticationService } from '../auth/_services';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-top-bar',
@@ -11,7 +13,9 @@ export class TopBarComponent implements OnInit, AfterViewInit {
 
     constructor(
         @Inject(DOCUMENT) private document: Document,
-        private renderer: Renderer2
+        private renderer: Renderer2,
+        private authService : AuthenticationService,
+        private router: Router
     ) { }
 
     ngAfterViewInit(): void {
@@ -29,6 +33,11 @@ export class TopBarComponent implements OnInit, AfterViewInit {
             this.renderer.removeClass(this.document.body, 'hide-sidebar');
         }
         this.showingMenu = !this.showingMenu;
+    }
+
+    doLogout():void {
+        this.authService.logout();
+        this.router.navigate(['/']);
     }
 
     hasSearch(): boolean {

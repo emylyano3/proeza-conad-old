@@ -43,7 +43,7 @@
                         </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/doLogout']" >
+                        <a (click)="doLogout()" >
                             <i class="fa fa-sign-out fa-fw"></i>
                             <span i18n="@@control.logout">Logout</span>
                         </a>
