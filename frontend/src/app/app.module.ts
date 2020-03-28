@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,8 +13,6 @@ import { FooterComponent } from './footer/footer.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { ArticuloListComponent } from './articulo/articulo-list/articulo-list.component';
 import { HomeComponent } from './home/home/home.component';
-import { AuthGuard } from './auth/_helpers/auth.guard';
-import { LoginComponent } from './auth/login';
 
 import { MenuEntryDirective } from './main-menu/menu-entry.directive';
 
@@ -27,23 +24,6 @@ import { AuthenticationService } from './auth/_services/authentication.service';
 import 'ag-grid-enterprise';
 import * as $ from "jquery";
 
-
-// [ // TODO Mover al AppRoutingModule
-const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'articulo/listado', component: ArticuloListComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: '' }
-];
-
-// { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-// { path: 'home', component: HomeComponent },
-// { path: 'articulo/listado', component: ArticuloListComponent },
-// // { path: 'login', component: LoginComponent },
-// // otherwise redirect to home
-// { path: '**', redirectTo: '' }
-// ]
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -52,7 +32,7 @@ const routes: Routes = [
     HttpClientModule,
     AuthenticationModule,
     AgGridModule.withComponents([]),
-    RouterModule.forRoot(routes, { enableTracing: true })
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
