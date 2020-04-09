@@ -2,6 +2,7 @@ package proeza.test.unit;
 
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -31,133 +32,140 @@ import com.proeza.sgs.business.service.IVentaChartService;
 import com.proeza.sgs.business.service.IVentaService;
 import com.proeza.system.dao.IPageDao;
 import com.proeza.system.mail.IMailManager;
+import com.proeza.system.service.IMenuService;
 import com.proeza.system.service.IPageService;
 
 @Configuration
+@ComponentScan(basePackages = {"com.proeza.core.classmapper", "com.proeza.core.context"})
 public class UnitTestContext {
 
-    @Bean
-    public IVentaService ventaService () {
-        return Mockito.mock(IVentaService.class);
-    }
+	@Bean
+	public IVentaService ventaService () {
+		return Mockito.mock(IVentaService.class);
+	}
 
-    @Bean
-    public IVentaChartService ventaChartService () {
-        return Mockito.mock(IVentaChartService.class);
-    }
+	@Bean
+	public IVentaChartService ventaChartService () {
+		return Mockito.mock(IVentaChartService.class);
+	}
 
-    @Bean
-    public IVentaDao ventaDao () {
-        return Mockito.mock(IVentaDao.class);
-    }
+	@Bean
+	public IVentaDao ventaDao () {
+		return Mockito.mock(IVentaDao.class);
+	}
 
-    @Bean
-    public IUserService userService () {
-        return Mockito.mock(UserService.class);
-    }
+	@Bean
+	public IUserService userService () {
+		return Mockito.mock(UserService.class);
+	}
 
-    @Bean
-    public PasswordEncoder sasswordEncoder () {
-        return Mockito.mock(PasswordEncoder.class);
-    }
+	@Bean
+	public PasswordEncoder sasswordEncoder () {
+		return Mockito.mock(PasswordEncoder.class);
+	}
 
-    @Bean
-    public IImageService imageService () {
-        return Mockito.mock(IImageService.class);
-    }
+	@Bean
+	public IImageService imageService () {
+		return Mockito.mock(IImageService.class);
+	}
 
-    @Bean
-    public IUsuarioDao usuarioDao () {
-        return Mockito.mock(IUsuarioDao.class);
-    }
+	@Bean
+	public IUsuarioDao usuarioDao () {
+		return Mockito.mock(IUsuarioDao.class);
+	}
 
-    @Bean
-    public HistorialPrecioChartManager historialPrecioLineChartManager () {
-        return new HistorialPrecioChartManager();
-    }
+	@Bean
+	public HistorialPrecioChartManager historialPrecioLineChartManager () {
+		return new HistorialPrecioChartManager();
+	}
 
-    @Bean
-    public IPageDao pageDao () {
-        return Mockito.mock(IPageDao.class);
-    }
+	@Bean
+	public IPageDao pageDao () {
+		return Mockito.mock(IPageDao.class);
+	}
 
-    @Bean
-    public IArticuloDao articuloDao () {
-        return Mockito.mock(IArticuloDao.class);
-    }
+	@Bean
+	public IArticuloDao articuloDao () {
+		return Mockito.mock(IArticuloDao.class);
+	}
 
-    @Bean
-    public IRolDao rolDao () {
-        return Mockito.mock(IRolDao.class);
-    }
+	@Bean
+	public IRolDao rolDao () {
+		return Mockito.mock(IRolDao.class);
+	}
 
-    @Bean
-    public IClaseService claseService () {
-        return Mockito.mock(IClaseService.class);
-    }
+	@Bean
+	public IClaseService claseService () {
+		return Mockito.mock(IClaseService.class);
+	}
 
-    @Bean
-    public IPageService pageService () {
-        return Mockito.mock(IPageService.class);
-    }
+	@Bean
+	public IPageService pageService () {
+		return Mockito.mock(IPageService.class);
+	}
 
-    @Bean
-    public IRoleService roleService () {
-        return Mockito.mock(IRoleService.class);
-    }
+	@Bean
+	public IMenuService menuService () {
+		return Mockito.mock(IMenuService.class);
+	}
 
-    @Bean
-    public IErrorService errorService () {
-        return Mockito.mock(IErrorService.class);
-    }
+	@Bean
+	public IRoleService roleService () {
+		return Mockito.mock(IRoleService.class);
+	}
 
-    @Bean
-    public IRubroService rubroService () {
-        return Mockito.mock(IRubroService.class);
-    }
+	@Bean
+	public IErrorService errorService () {
+		return Mockito.mock(IErrorService.class);
+	}
 
-    @Bean
-    public ITipoService tipoService () {
-        return Mockito.mock(ITipoService.class);
-    }
+	@Bean
+	public IRubroService rubroService () {
+		return Mockito.mock(IRubroService.class);
+	}
 
-    @Bean
-    public IMarcaService marcaService () {
-        return Mockito.mock(IMarcaService.class);
-    }
+	@Bean
+	public ITipoService tipoService () {
+		return Mockito.mock(ITipoService.class);
+	}
 
-    @Bean
-    public IMailService mailService () {
-        return Mockito.mock(IMailService.class);
-    }
+	@Bean
+	public IMarcaService marcaService () {
+		return Mockito.mock(IMarcaService.class);
+	}
 
-    @Bean
-    public IArticuloService productService () {
-        return Mockito.mock(IArticuloService.class);
-    }
+	@Bean
+	public IMailService mailService () {
+		return Mockito.mock(IMailService.class);
+	}
 
-    @Bean
-    public IArticuloChartService productChartService () {
-        return Mockito.mock(IArticuloChartService.class);
-    }
+	@Bean
+	public IArticuloService productService () {
+		return Mockito.mock(IArticuloService.class);
+	}
 
-    @Bean
-    public IMailManager mailManager () {
-        return Mockito.mock(IMailManager.class);
-    }
+	@Bean
+	public IArticuloChartService productChartService () {
+		return Mockito.mock(IArticuloChartService.class);
+	}
 
-    @Bean
-    public IMessageResolver proezaMessageResolver () {
-        return Mockito.mock(MessageResolver.class);
-    }
+	@Bean
+	public IMailManager mailManager () {
+		return Mockito.mock(IMailManager.class);
+	}
 
-    @Bean
-    public LocaleResolver localeResolver () {
-        return new FixedLocaleResolver();
-    }
+	@Bean
+	public IMessageResolver proezaMessageResolver () {
+		return Mockito.mock(MessageResolver.class);
+	}
 
-    @Bean
-    public PlatformTransactionManager platformTransactionManager () {
-        return Mockito.mock(PlatformTransactionManager.class);
-    }
+	@Bean
+	public LocaleResolver localeResolver () {
+		return new FixedLocaleResolver();
+	}
+
+	@Bean
+	public PlatformTransactionManager platformTransactionManager () {
+		return Mockito.mock(PlatformTransactionManager.class);
+	}
 }

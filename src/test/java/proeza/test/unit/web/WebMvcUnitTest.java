@@ -11,7 +11,6 @@ import org.springframework.web.context.WebApplicationContext;
 import com.proeza.config.dispatcher.WebMvcConfig;
 
 import proeza.test.unit.AbstractUnitTest;
-import proeza.test.unit.UnitTestContext;
 
 /**
  * Arquitectura de testing unitario para la parte web de la aplicacion.<br/>
@@ -21,8 +20,8 @@ import proeza.test.unit.UnitTestContext;
  *
  * @author c.eschia
  */
-@ContextConfiguration(classes = {UnitTestContext.class, WebMvcConfig.class})
 @WebAppConfiguration
+@ContextConfiguration(classes = {WebMvcConfig.class})
 public abstract class WebMvcUnitTest extends AbstractUnitTest {
 	protected MockMvc             mockMvc;
 
