@@ -4,15 +4,15 @@
 
 <hibernate-configuration>
 	<!-- a SessionFactory instance -->
-	<session-factory name="sgs-proeza">
-		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
-		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306</property>
+	<session-factory name="cad-proeza">
+<!-- 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property> -->
+<!-- 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property> -->
+<!-- 		<property name="connection.url">jdbc:mysql://localhost:3306</property> -->
 <!-- 		<property name="hibernate.default_schema">sgs_proeza_db</property> -->
-		<property name="hibernate.show_sql">true</property>
-		<property name="hibernate.hbm2ddl.auto">true</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">root</property>
+<!-- 		<property name="hibernate.hbm2ddl.auto">true</property> -->
+<!-- 		<property name="hibernate.show_sql">true</property> -->
+<!-- 		<property name="hibernate.connection.username">root</property> -->
+<!-- 		<property name="hibernate.connection.password">root</property> -->
 
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.generate_statistics">true</property>

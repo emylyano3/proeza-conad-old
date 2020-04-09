@@ -16,19 +16,18 @@ import com.proeza.sgs.business.scheduling.JobRelevamiento;
 @ActiveProfiles("dev")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {Environments.class, ContextConfig.class})
-public class StockCronesQueriesTest // extends IntegrationTest
-{
+public class StockCronesQueriesTest {
 
-    @Autowired
-    private JobRelevamiento job;
+	@Autowired
+	private JobRelevamiento job;
 
-    @Test
-    public void countStock_POR_MARCA () {
-        this.job.countStockByBrand();
-    }
+	@Test
+	public void countStock_POR_MARCA () {
+		this.job.countStockByBrand();
+	}
 
-    @Test
-    public void countStock_POR_RUBRO () {
-        this.job.countStockByBrand();
-    }
+	@Test
+	public void countStock_POR_RUBRO () {
+		this.job.countStockByBrand();
+	}
 }

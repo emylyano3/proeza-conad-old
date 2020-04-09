@@ -11,6 +11,7 @@ import javax.sql.rowset.serial.SerialBlob;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ import com.proeza.sgs.business.entity.Tipo;
 import com.proeza.sgs.business.entity.builder.CodeBuilder;
 import com.proeza.sgs.business.service.impl.ArticuloService;
 
+@Ignore
 @Transactional
 @ActiveProfiles(profiles = "prod")
 @RunWith(SpringJUnit4ClassRunner.class)

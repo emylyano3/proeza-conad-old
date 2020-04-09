@@ -1,4 +1,4 @@
-package proeza.test.integration.persistence;
+package proeza.test.integration.persistence.sgs;
 
 import java.util.List;
 
@@ -8,18 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import proeza.test.integration.IntegrationTest;
 
-import com.proeza.sgs.business.dao.IArticuloDao;
-import com.proeza.sgs.business.entity.Articulo;
+import com.proeza.sgs.business.dao.IVentaDao;
+import com.proeza.sgs.business.entity.Venta;
 
-public class ArticuloDalTest extends IntegrationTest {
+public class VentaDalTest extends IntegrationTest {
 
     @Autowired
-    private IArticuloDao articleDao;
+    private IVentaDao ventaDao;
 
     @Test
     public void findAll () {
-        List<Articulo> result = this.articleDao.findAll();
+        List<Venta> result = this.ventaDao.findAll();
         Assert.assertNotNull(result);
         Assert.assertFalse(result.isEmpty());
+    }
+
+    @Test
+    public void chart_WORST_SELLERS () {
     }
 }

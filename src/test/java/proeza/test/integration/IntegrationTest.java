@@ -15,6 +15,6 @@ import com.proeza.config.root.ContextConfig;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {Environments.class, ContextConfig.class})
 public abstract class IntegrationTest {
-    @SuppressWarnings("unused")
-    private MvcInitializer initializer = new MvcInitializer();
+	@SuppressWarnings("unused")
+	private MvcInitializer initializer = new MvcInitializer();
 }
