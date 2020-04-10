@@ -1,8 +1,6 @@
-
-USE `cad_proeza_db`;
 -- MySQL dump 10.13  Distrib 5.7.26, for Win64 (x86_64)
 --
--- Host: localhost    Database: cad_proeza_db
+-- Host: localhost    Database: cad_proeza_dev_db
 -- ------------------------------------------------------
 -- Server version	5.7.26-log
 
@@ -151,6 +149,96 @@ LOCK TABLES `art_venta_articulo` WRITE;
 UNLOCK TABLES;
 
 --
+-- Dumping data for table `cad_consorcio`
+--
+
+LOCK TABLES `cad_consorcio` WRITE;
+/*!40000 ALTER TABLE `cad_consorcio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cad_consorcio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `cad_consorcio_consorcista`
+--
+
+LOCK TABLES `cad_consorcio_consorcista` WRITE;
+/*!40000 ALTER TABLE `cad_consorcio_consorcista` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cad_consorcio_consorcista` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `cad_consorcista`
+--
+
+LOCK TABLES `cad_consorcista` WRITE;
+/*!40000 ALTER TABLE `cad_consorcista` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cad_consorcista` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `cad_inquilino`
+--
+
+LOCK TABLES `cad_inquilino` WRITE;
+/*!40000 ALTER TABLE `cad_inquilino` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cad_inquilino` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `cad_propietario`
+--
+
+LOCK TABLES `cad_propietario` WRITE;
+/*!40000 ALTER TABLE `cad_propietario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cad_propietario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `cad_uf_inquilino`
+--
+
+LOCK TABLES `cad_uf_inquilino` WRITE;
+/*!40000 ALTER TABLE `cad_uf_inquilino` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cad_uf_inquilino` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `cad_uf_propietario`
+--
+
+LOCK TABLES `cad_uf_propietario` WRITE;
+/*!40000 ALTER TABLE `cad_uf_propietario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cad_uf_propietario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `cad_uf_tipo`
+--
+
+LOCK TABLES `cad_uf_tipo` WRITE;
+/*!40000 ALTER TABLE `cad_uf_tipo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cad_uf_tipo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `cad_unidad_funcional`
+--
+
+LOCK TABLES `cad_unidad_funcional` WRITE;
+/*!40000 ALTER TABLE `cad_unidad_funcional` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cad_unidad_funcional` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `cmn_direccion`
+--
+
+LOCK TABLES `cmn_direccion` WRITE;
+/*!40000 ALTER TABLE `cmn_direccion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cmn_direccion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping data for table `cmn_error`
 --
 
@@ -213,7 +301,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `cmn_persona` WRITE;
 /*!40000 ALTER TABLE `cmn_persona` DISABLE KEYS */;
-INSERT INTO `cmn_persona` VALUES (00000000000000000001,'Emiliano','Schiano di Cola','M','emiliano.schiano@gmail.com',NULL),(00000000000000000002,'Emiliano','Schiano di Cola','M','emiliano.schiano@gmail.com',NULL);
+INSERT INTO `cmn_persona` VALUES (00000000000000000001,'Emiliano','Schiano','M','emiliano.schiano@gmail.com',NULL,1),(00000000000000000002,'user_admin','user_admin','M','user_admin@proeza.com.ar',NULL,1),(00000000000000000003,'prod_admin','prod_admin','M','prod_admin@proeza.com.ar',NULL,1),(00000000000000000004,'prod_viewer','prod_viewer','M','prod_viewer@proeza.com.ar',NULL,1),(00000000000000000005,'prod_stat','prod_stat','M','prod_stat@proeza.com.ar',NULL,1);
 /*!40000 ALTER TABLE `cmn_persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +359,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `seg_usuario` WRITE;
 /*!40000 ALTER TABLE `seg_usuario` DISABLE KEYS */;
-INSERT INTO `seg_usuario` VALUES (00000000000000000001,'admin','$2a$10$N9ba82wZVlNGgMgcO24XBeGwcE6LkEPkWvuFI8I7efa5F8VgOWXEq');
+INSERT INTO `seg_usuario` VALUES (00000000000000000001,'admin','$2a$10$N9ba82wZVlNGgMgcO24XBeGwcE6LkEPkWvuFI8I7efa5F8VgOWXEq'),(00000000000000000002,'user_admin','$2a$10$oTBcDbxPZlyEhjK4/Q8.o.PCiqc.LwOg5IgF7e4VWAzkDMlVr0cvW'),(00000000000000000003,'prod_admin','$2a$10$gstdn6.1OVcOmjSxx36kJuHoH9seRgbSNYQjVTNavTBVGGxcrT6VC'),(00000000000000000004,'prod_viewer','$2a$10$WwVnE7OeUpe1a892TJrbEOUEzTFKWiHLIM0w9WNKyxZmyGM8vmwk2'),(00000000000000000005,'prod_stat','$2a$10$LGpaazPGhg3U8cqTEb5bq.65GKpqYlEoRG7xEBEtnJ0ZiNN5CFz/S');
 /*!40000 ALTER TABLE `seg_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -281,6 +369,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `seg_usuario_rol` WRITE;
 /*!40000 ALTER TABLE `seg_usuario_rol` DISABLE KEYS */;
+INSERT INTO `seg_usuario_rol` VALUES (00000000000000000001,00000000000000000002,00000000000000000041),(00000000000000000002,00000000000000000002,00000000000000000042),(00000000000000000003,00000000000000000002,00000000000000000043),(00000000000000000004,00000000000000000003,00000000000000000031),(00000000000000000005,00000000000000000004,00000000000000000032),(00000000000000000006,00000000000000000005,00000000000000000033),(00000000000000000015,00000000000000000001,00000000000000000043),(00000000000000000016,00000000000000000001,00000000000000000042),(00000000000000000017,00000000000000000001,00000000000000000033),(00000000000000000018,00000000000000000001,00000000000000000001),(00000000000000000019,00000000000000000001,00000000000000000041),(00000000000000000020,00000000000000000001,00000000000000000031),(00000000000000000021,00000000000000000001,00000000000000000032),(00000000000000000022,00000000000000000001,00000000000000000044);
 /*!40000 ALTER TABLE `seg_usuario_rol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -373,4 +462,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-09 14:30:45
+-- Dump completed on 2020-04-10 18:55:40
