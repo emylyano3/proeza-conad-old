@@ -29,7 +29,7 @@ public class ArticuloRestTest extends WebMvcIntegrationTest {
         this.mockMvc
         .perform(post("/rest/product/stats/priceHistory/PRRS000001"))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+        .andExpect(content().contentType(TestUtil.APPLICATION_JSON))
         .andExpect(jsonPath("$.labels", hasSize(5)))
         .andExpect(jsonPath("$.data", hasSize(5)))
         .andExpect(jsonPath("$.data[0]", is(270D)));
@@ -43,7 +43,7 @@ public class ArticuloRestTest extends WebMvcIntegrationTest {
         this.articuloDao.persist(articulo);
         this.mockMvc.perform(post("/rest/product/stats/priceHistory/PRRS000001"))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+        .andExpect(content().contentType(TestUtil.APPLICATION_JSON))
         .andExpect(jsonPath("$.labels", hasSize(10)))
         .andExpect(jsonPath("$.data", hasSize(10)))
         .andExpect(jsonPath("$.data[0]", is(325D)));
@@ -63,7 +63,7 @@ public class ArticuloRestTest extends WebMvcIntegrationTest {
         this.articuloDao.persist(articulo);
         this.mockMvc.perform(post("/rest/product/stats/priceHistory/PRRS000001"))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+        .andExpect(content().contentType(TestUtil.APPLICATION_JSON))
         .andExpect(jsonPath("$.labels", hasSize(10)))
         .andExpect(jsonPath("$.data", hasSize(10)))
         .andExpect(jsonPath("$.data[0]", is(325D)))

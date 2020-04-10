@@ -35,7 +35,7 @@ public class Persona implements Serializable {
 	private Set<Telefono>		telefonos			= new HashSet<>(0);
 
 	@Id
-	@GeneratedValue(strategy = AUTO)
+	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", nullable = false, unique = true)
 	public Long getId () {
 		return this.id;
