@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+
+	<table-filter match-name="cad_consorcio" match-catalog="cad_proeza_dev_db"></table-filter>
+	<table-filter match-name="cad_consorcista" match-catalog="cad_proeza_dev_db"></table-filter>
+	<table-filter match-name="cad_inquilino" match-catalog="cad_proeza_dev_db"></table-filter>
+	<table-filter match-name="cad_propietario" match-catalog="cad_proeza_dev_db"></table-filter>
+	<table-filter match-name="cad_uf_inquilino" match-catalog="cad_proeza_dev_db"></table-filter>
+	<table-filter match-name="cad_uf_propietario" match-catalog="cad_proeza_dev_db"></table-filter>
+	<table-filter match-name="cad_uf_tipo" match-catalog="cad_proeza_dev_db"></table-filter>
+	<table-filter match-name="cad_unidad_funcional" match-catalog="cad_proeza_dev_db"></table-filter>
+
+	<table catalog="cad_proeza_dev_db" name="Consorcio">
+		<column name="id"></column>
+		<column name="estado"></column>
+		<column name="email"></column>
+		<column name="nombre"></column>
+		<column name="descripcion"></column>
+		<column name="direccion"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="Consorcista">
+		<column name="persona"></column>
+		<column name="consorcio"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="Inquilino">
+		<column name="persona"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="Propietario">
+		<column name="persona"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="UnidadFuncional">
+		<column name="id"></column>
+		<column name="codigo"></column>
+		<column name="consorcio"></column>
+		<column name="tipoUnidadFuncional"></column>
+	</table>
+</hibernate-reverse-engineering>
