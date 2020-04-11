@@ -1,4 +1,4 @@
-package com.proeza.sgs.business.entity;
+package com.proeza.core.entity;
 
 import java.sql.Blob;
 

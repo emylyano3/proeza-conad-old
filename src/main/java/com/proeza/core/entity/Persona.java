@@ -1,4 +1,4 @@
-package com.proeza.sgs.business.entity;
+package com.proeza.core.entity;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -16,9 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.proeza.core.entity.Foto;
-import com.proeza.core.entity.Telefono;
 
 import static javax.persistence.GenerationType.*;
 

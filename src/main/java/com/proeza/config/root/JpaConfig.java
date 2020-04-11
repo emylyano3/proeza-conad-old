@@ -58,6 +58,7 @@ public class JpaConfig {
 			"com.proeza.security.entity",
 			"com.proeza.sgs.business.entity",
 			"com.proeza.system.entity",
+			"com.proeza.core.entity",
 			"com.proeza.core.i18n.entity",
 			"com.proeza.core.error.entity",
 			"com.proeza.core.tracking.entity");

@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.proeza.core.entity.Foto;
 import com.proeza.core.service.IImageService;
 import com.proeza.security.dao.IRolDao;
 import com.proeza.security.dao.IUsuarioDao;
@@ -25,7 +26,6 @@ import com.proeza.security.entity.Usuario;
 import com.proeza.security.entity.builder.UsuarioBuilder;
 import com.proeza.security.form.UsuarioForm;
 import com.proeza.security.service.IUserService;
-import com.proeza.sgs.business.entity.Foto;
 
 @Transactional
 @Service("userService")
