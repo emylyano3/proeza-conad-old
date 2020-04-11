@@ -18,7 +18,7 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Cache;
 
-import com.proeza.sgs.business.entity.Persona;
+import com.proeza.core.entity.Persona;
 
 import static org.hibernate.annotations.CacheConcurrencyStrategy.*;
 

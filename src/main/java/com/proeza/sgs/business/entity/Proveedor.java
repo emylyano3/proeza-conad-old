@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.proeza.core.entity.Persona;
 import com.proeza.core.entity.Telefono;
 
 @Entity
