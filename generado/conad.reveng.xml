@@ -2,38 +2,73 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-
-	<table-filter match-name="cad_consorcio" match-catalog="cad_proeza_dev_db"></table-filter>
-	<table-filter match-name="cad_consorcista" match-catalog="cad_proeza_dev_db"></table-filter>
-	<table-filter match-name="cad_inquilino" match-catalog="cad_proeza_dev_db"></table-filter>
-	<table-filter match-name="cad_propietario" match-catalog="cad_proeza_dev_db"></table-filter>
-	<table-filter match-name="cad_uf_inquilino" match-catalog="cad_proeza_dev_db"></table-filter>
-	<table-filter match-name="cad_uf_propietario" match-catalog="cad_proeza_dev_db"></table-filter>
-	<table-filter match-name="cad_uf_tipo" match-catalog="cad_proeza_dev_db"></table-filter>
-	<table-filter match-name="cad_unidad_funcional" match-catalog="cad_proeza_dev_db"></table-filter>
-
-	<table catalog="cad_proeza_dev_db" name="Consorcio">
+	<table-filter match-catalog="cad_proeza_dev_db" match-name="cad_.*" match-schema=".*"></table-filter>
+	<table-filter match-catalog="cad_proeza_dev_db" match-name="cmn_persona" match-schema=".*"></table-filter>
+	<table catalog="cad_proeza_dev_db" name="cad_consorcio" class="com.proeza.conad.business.entity.Consorcio">
 		<column name="id"></column>
 		<column name="estado"></column>
 		<column name="email"></column>
 		<column name="nombre"></column>
 		<column name="descripcion"></column>
-		<column name="direccion"></column>
+		<column name="fk_direccion" property="direccion"></column>
 	</table>
-	<table catalog="cad_proeza_dev_db" name="Consorcista">
-		<column name="persona"></column>
-		<column name="consorcio"></column>
+	<table catalog="cad_proeza_dev_db" name="cad_consorcio" class="com.proeza.conad.business.entity.Consorcio">
+		<column name="id"></column>
+		<column name="nombre"></column>
+		<column name="estado"></column>
+		<column name="descripcion"></column>
+		<column name="email"></column>
+		<column name="fk_direccion"></column>
 	</table>
-	<table catalog="cad_proeza_dev_db" name="Inquilino">
-		<column name="persona"></column>
+	<table catalog="cad_proeza_dev_db" name="cad_consorcio_consorcista" class="com.proeza.conad.business.entity.ConsorcioConsorcista">
+		<column name="id"></column>
+		<column name="fk_consorcista"></column>
+		<column name="fk_consorcio"></column>
+		<column name="estado"></column>
 	</table>
-	<table catalog="cad_proeza_dev_db" name="Propietario">
-		<column name="persona"></column>
+	<table catalog="cad_proeza_dev_db" name="cad_consorcista" class="com.proeza.conad.business.entity.Consorcista">
+		<column name="fk_persona"></column>
 	</table>
-	<table catalog="cad_proeza_dev_db" name="UnidadFuncional">
+	<table catalog="cad_proeza_dev_db" name="cad_inquilino" class="com.proeza.conad.business.entity.Inquilino">
+		<column name="fk_persona"></column>
+		<column name="fk_consorcio"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_propietario" class="com.proeza.conad.business.entity.Propietario">
+		<column name="fk_persona"></column>
+		<column name="fk_consorcio"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_uf_inquilino" class="com.proeza.conad.business.entity.UnidadFuncionalInquilino">
+		<column name="id"></column>
+		<column name="estado"></column>
+		<column name="fk_uf"></column>
+		<column name="fk_inquilino"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_uf_propietario" class="com.proeza.conad.business.entity.UnidadFuncionalPropietario">
+		<column name="id"></column>
+		<column name="fk_uf"></column>
+		<column name="estado"></column>
+		<column name="fk_propietario"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_uf_tipo" class="com.proeza.conad.business.entity.TipoUnidadFuncional">
 		<column name="id"></column>
 		<column name="codigo"></column>
-		<column name="consorcio"></column>
-		<column name="tipoUnidadFuncional"></column>
+		<column name="nombre"></column>
+		<column name="descripcion"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_unidad_funcional" class="com.proeza.conad.business.entity.UnidadFuncional">
+		<column name="id"></column>
+		<column name="codigo"></column>
+		<column name="estado"></column>
+		<column name="fk_consorcio"></column>
+		<column name="fk_tipo_uf"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cmn_persona" class="com.proeza.conad.business.entity.Persona">
+		<column name="id"></column>
+		<column name="nombre"></column>
+		<column name="apellido"></column>
+		<column name="email"></column>
+		<column name="estado"></column>
+		<column name="sexo"></column>
+		<column name="fk_foto"></column>
 	</table>
 </hibernate-reverse-engineering>

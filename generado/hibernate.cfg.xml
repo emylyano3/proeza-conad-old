@@ -17,6 +17,7 @@
  		<property name="hibernate.current_session_context_class">thread</property> -->
   <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+ <!-- 
   <mapping class="com.proeza.security.entity.Rol"/>
   <mapping class="com.proeza.security.entity.Login"/>
   <mapping class="com.proeza.security.entity.Usuario"/>
@@ -54,5 +55,6 @@
   <mapping class="com.proeza.system.entity.Page"/>
   <mapping class="com.proeza.system.entity.PageMenu"/>
   <mapping class="com.proeza.system.entity.PageRol"/>
+  -->
  </session-factory>
 </hibernate-configuration>
