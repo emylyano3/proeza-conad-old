@@ -6,6 +6,7 @@ import org.junit.runners.Suite;
 import proeza.test.integration.form.FormValidationTest;
 import proeza.test.integration.mail.MailTestSuite;
 import proeza.test.integration.persistence.DalTestSuite;
+import proeza.test.integration.persistence.conad.ConsorcioDalTest;
 import proeza.test.integration.tracking.TrackingTest;
 import proeza.test.integration.web.rest.ArticuloRestTest;
 
@@ -15,7 +16,8 @@ import proeza.test.integration.web.rest.ArticuloRestTest;
     MailTestSuite.class,
     FormValidationTest.class,
     TrackingTest.class,
-    ArticuloRestTest.class
+    ArticuloRestTest.class,
+    ConsorcioDalTest.class
 })
 public class IntegrationTestSuite {
 }

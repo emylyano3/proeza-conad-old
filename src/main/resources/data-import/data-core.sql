@@ -11,6 +11,10 @@
 	insert into cad_proeza_test_db.cmn_medio_pago (codigo, nombre, descripcion) values ('TDE', 'Débito', 'Tarjeta de débito');
 /* Medio de pago */
 		
+	insert into cmn_documento_tipo (codigo, nombre, descripcion) values ('DU','Documento único','Documento único');
+	insert into cmn_documento_tipo (codigo, nombre, descripcion) values ('DNI','Documento nacional de identidad','Documento nacional de identidad');
+	insert into cmn_documento_tipo (codigo, nombre, descripcion) values ('CI','Dédula de identidad','Cédula de identidad');
+	insert into cmn_documento_tipo (codigo, nombre, descripcion) values ('LI','Libreta de enrolamiento','Libreta de enrolamiento');
 /* Internacionalizacion */
 	
 /* Localizacion de textos */

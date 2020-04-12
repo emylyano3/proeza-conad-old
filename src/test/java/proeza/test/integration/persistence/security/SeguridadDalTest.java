@@ -70,6 +70,7 @@ public class SeguridadDalTest extends IntegrationTest {
 			.withEmail("email@gmail.com")
 			.withNombre("nombre")
 			.withPassword("password")
+			.withSexo("M")
 			.withRoles(roles)
 			.build();
 		this.userDao.persist(user);

@@ -57,6 +57,7 @@ public class JpaConfig {
 		em.setPackagesToScan(
 			"com.proeza.security.entity",
 			"com.proeza.sgs.business.entity",
+			"com.proeza.conad.entity",
 			"com.proeza.system.entity",
 			"com.proeza.core.entity",
 			"com.proeza.core.i18n.entity",
