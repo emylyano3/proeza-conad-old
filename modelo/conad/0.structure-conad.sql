@@ -382,25 +382,6 @@ CREATE TABLE `cad_cuenta` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `cad_cuenta_movimiento`
---
-
-DROP TABLE IF EXISTS `cad_cuenta_movimiento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cad_cuenta_movimiento` (
-  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  `monto` decimal(10,3) NOT NULL,
-  `fecha` date NOT NULL,
-  `fk_cuenta` bigint(20) unsigned zerofill NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `fk_cuenta_idx` (`fk_cuenta`),
-  CONSTRAINT `fk_movi_cuen` FOREIGN KEY (`fk_cuenta`) REFERENCES `cad_cuenta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `cad_expensa`
 --
 
@@ -1100,4 +1081,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-14 19:24:32
+-- Dump completed on 2020-04-14 19:40:16

@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import proeza.test.integration.persistence.conad.ConsorcioDalTest;
+import proeza.test.integration.persistence.conad.InquilinoDalTest;
 import proeza.test.integration.persistence.conad.UnidadFuncionalDalTest;
 import proeza.test.integration.persistence.core.PersonaDalTest;
 import proeza.test.integration.persistence.security.SeguridadDalTest;
@@ -15,6 +16,7 @@ import proeza.test.integration.persistence.system.SistemaDalTest;
 	PersonaDalTest.class,
 	ConsorcioDalTest.class,
 	UnidadFuncionalDalTest.class,
+	InquilinoDalTest.class,
 	NegocioDalTest.class,
 	SistemaDalTest.class,
 	SeguridadDalTest.class

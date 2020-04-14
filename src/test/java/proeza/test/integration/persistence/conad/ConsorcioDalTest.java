@@ -23,7 +23,7 @@ public class ConsorcioDalTest extends IntegrationTest {
 		assertFalse(consorcio.getConsorcistas().isEmpty());
 		assertNotNull(consorcio.getUnidadesFuncionales());
 		assertFalse(consorcio.getUnidadesFuncionales().isEmpty());
-		assertEquals(2, consorcio.getUnidadesFuncionales().size());
+		assertEquals(3, consorcio.getUnidadesFuncionales().size());
 		for (UnidadFuncional uf : consorcio.getUnidadesFuncionales()) {
 			switch (uf.getCodigo()) {
 				case UnidadFuncional.UF_COCHE: {
@@ -36,5 +36,7 @@ public class ConsorcioDalTest extends IntegrationTest {
 				}
 			}
 		}
+		assertNotNull(consorcio.getConsorcistas());
+		assertEquals(1, consorcio.getConsorcistas().size());
 	}
 }

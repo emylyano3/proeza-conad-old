@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.WhereJoinTable;
+
 import com.proeza.security.entity.Usuario;
 
 import static javax.persistence.GenerationType.*;
@@ -65,10 +67,11 @@ public class Propietario implements Serializable {
 		this.cuenta = cuenta;
 	}
 
+	@WhereJoinTable(clause = "habilitado = 1")
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "cad_uf_propietario",
-	joinColumns = {@JoinColumn(name = "fk_propietario")},
-	inverseJoinColumns = {@JoinColumn(name = "fk_uf")})
+		joinColumns = {@JoinColumn(name = "fk_propietario")},
+		inverseJoinColumns = {@JoinColumn(name = "fk_uf")})
 	public Set<UnidadFuncional> getUnidadesFuncionales () {
 		return this.unidadesFuncionales;
 	}

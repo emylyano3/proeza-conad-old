@@ -28,7 +28,7 @@ public class ConsorcioConsorcista implements java.io.Serializable {
 	private Long				id;
 	private Consorcio			consorcio;
 	private Consorcista			consorcista;
-	private int					habilitado;
+	private boolean				habilitado;
 
 	public ConsorcioConsorcista () {
 	}
@@ -65,11 +65,11 @@ public class ConsorcioConsorcista implements java.io.Serializable {
 	}
 
 	@Column(name = "habilitado", nullable = false, columnDefinition = "BIT")
-	public int isHabilitado () {
+	public boolean isHabilitado () {
 		return this.habilitado;
 	}
 
-	public void setHabilitado (int habilitado) {
+	public void setHabilitado (boolean habilitado) {
 		this.habilitado = habilitado;
 	}
 }

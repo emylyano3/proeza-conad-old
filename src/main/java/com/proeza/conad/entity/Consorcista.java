@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.WhereJoinTable;
+
 import com.proeza.security.entity.Usuario;
 
 import static javax.persistence.GenerationType.*;
@@ -57,6 +59,7 @@ public class Consorcista implements Serializable {
 		this.usuario = usuario;
 	}
 
+	@WhereJoinTable(clause = "habilitado = 1")
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 		name = "cad_consorcio_consorcista",

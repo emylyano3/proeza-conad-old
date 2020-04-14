@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.WhereJoinTable;
+
 import com.proeza.core.entity.Direccion;
 
 /**
@@ -32,7 +34,7 @@ public class Consorcio implements java.io.Serializable {
 	private String					nombre;
 	private String					descripcion;
 	private String					email;
-	private Boolean					habilitado;
+	private boolean					habilitado;
 	private Direccion				direccion;
 	private Set<Consorcista>		consorcistas		= new HashSet<Consorcista>(0);
 	private Set<UnidadFuncional>	unidadesFuncionales	= new HashSet<UnidadFuncional>(0);
@@ -40,7 +42,7 @@ public class Consorcio implements java.io.Serializable {
 	public Consorcio () {
 	}
 
-	public Consorcio (long id, Direccion direccion, String nombre, String email, Boolean habilitado) {
+	public Consorcio (long id, Direccion direccion, String nombre, String email, boolean habilitado) {
 		this.id = id;
 		this.direccion = direccion;
 		this.nombre = nombre;
@@ -97,14 +99,15 @@ public class Consorcio implements java.io.Serializable {
 	}
 
 	@Column(name = "habilitado", nullable = false, columnDefinition = "BIT")
-	public Boolean isHabilitado () {
+	public boolean isHabilitado () {
 		return this.habilitado;
 	}
 
-	public void setHabilitado (Boolean habilitado) {
+	public void setHabilitado (boolean habilitado) {
 		this.habilitado = habilitado;
 	}
 
+	@WhereJoinTable(clause = "habilitado = 1")
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 		name = "cad_consorcio_consorcista",

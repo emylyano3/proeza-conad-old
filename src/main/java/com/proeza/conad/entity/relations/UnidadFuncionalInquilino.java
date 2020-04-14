@@ -27,12 +27,12 @@ public class UnidadFuncionalInquilino implements java.io.Serializable {
 	private Long				id;
 	private Inquilino			inquilino;
 	private UnidadFuncional		unidadFuncional;
-	private int					habilitado;
+	private boolean				habilitado;
 
 	public UnidadFuncionalInquilino () {
 	}
 
-	public UnidadFuncionalInquilino (Inquilino inquilino, UnidadFuncional unidadFuncional, int habilitado) {
+	public UnidadFuncionalInquilino (Inquilino inquilino, UnidadFuncional unidadFuncional, boolean habilitado) {
 		this.inquilino = inquilino;
 		this.unidadFuncional = unidadFuncional;
 		this.habilitado = habilitado;
@@ -70,11 +70,11 @@ public class UnidadFuncionalInquilino implements java.io.Serializable {
 	}
 
 	@Column(name = "habilitado", nullable = false, columnDefinition = "BIT")
-	public int isHabilitado () {
+	public boolean isHabilitado () {
 		return this.habilitado;
 	}
 
-	public void setHabilitado (int habilitado) {
+	public void setHabilitado (boolean habilitado) {
 		this.habilitado = habilitado;
 	}
 }

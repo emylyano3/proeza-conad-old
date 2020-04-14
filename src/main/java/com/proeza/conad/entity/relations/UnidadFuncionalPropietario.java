@@ -26,7 +26,7 @@ public class UnidadFuncionalPropietario implements java.io.Serializable {
 	private Long				id;
 	private Propietario			propietario;
 	private UnidadFuncional		unidadFuncional;
-	private int					habilitado;
+	private boolean				habilitado;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -60,11 +60,11 @@ public class UnidadFuncionalPropietario implements java.io.Serializable {
 	}
 
 	@Column(name = "habilitado", nullable = false, columnDefinition = "BIT")
-	public int isHabilitado () {
+	public boolean isHabilitado () {
 		return this.habilitado;
 	}
 
-	public void setHabilitado (int habilitado) {
+	public void setHabilitado (boolean habilitado) {
 		this.habilitado = habilitado;
 	}
 }

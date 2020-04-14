@@ -2,6 +2,8 @@ package com.proeza.conad.entity;
 // Generated Apr 11, 2020, 7:13:39 PM by Hibernate Tools 5.2.12.Final
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +11,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.proeza.conad.entity.relations.UnidadFuncionalInquilino;
+import com.proeza.conad.entity.relations.UnidadFuncionalPropietario;
 
 import static javax.persistence.GenerationType.*;
 
@@ -21,19 +27,19 @@ import static javax.persistence.GenerationType.*;
 @Entity
 @Table(name = "cad_unidad_funcional")
 public class UnidadFuncional implements java.io.Serializable {
-	private static final long	serialVersionUID	= 1L;
+	private static final long				serialVersionUID	= 1L;
 
-	public static final String	UF_DEPTO			= "UFDPTO";
-	public static final String	UF_COCHE			= "UFCOCH";
+	public static final String				UF_DEPTO			= "UFDPTO";
+	public static final String				UF_COCHE			= "UFCOCH";
 
-	private Long				id;
-	private String				codigo;
-	private BigDecimal			incidencia;
-	private Boolean				habilitado;
-	private Consorcio			consorcio;
-	private TipoUnidadFuncional	tipoUnidadFuncional;
-	private Propietario			propietario;
-	private Inquilino			inquilino;
+	private Long							id;
+	private String							codigo;
+	private BigDecimal						incidencia;
+	private boolean							habilitado;
+	private Consorcio						consorcio;
+	private TipoUnidadFuncional				tipoUnidadFuncional;
+	private Set<UnidadFuncionalPropietario>	propietarios		= new HashSet<UnidadFuncionalPropietario>(0);
+	private Set<UnidadFuncionalInquilino>	inquilinos			= new HashSet<UnidadFuncionalInquilino>(0);
 
 	public UnidadFuncional () {
 	}
@@ -94,35 +100,49 @@ public class UnidadFuncional implements java.io.Serializable {
 	}
 
 	@Column(name = "habilitado", nullable = false, columnDefinition = "BIT")
-	public Boolean isHabilitado () {
+	public boolean isHabilitado () {
 		return this.habilitado;
 	}
 
-	public void setHabilitado (Boolean habilitado) {
+	public void setHabilitado (boolean habilitado) {
 		this.habilitado = habilitado;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinTable(name = "cad_uf_propietario",
-	joinColumns = {@JoinColumn(name = "fk_uf")},
-	inverseJoinColumns = {@JoinColumn(name = "fk_propietario")})
-	public Propietario getPropietario () {
-		return this.propietario;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "unidadFuncional")
+	public Set<UnidadFuncionalPropietario> getPropietarios () {
+		return this.propietarios;
 	}
 
-	public void setPropietario (Propietario propietario) {
-		this.propietario = propietario;
+	public void setPropietarios (Set<UnidadFuncionalPropietario> propietarios) {
+		this.propietarios = propietarios;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinTable(name = "cad_uf_inquilino",
-	joinColumns = {@JoinColumn(name = "fk_uf")},
-	inverseJoinColumns = {@JoinColumn(name = "fk_inquilino")})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "unidadFuncional")
+	public Set<UnidadFuncionalInquilino> getInquilinos () {
+		return this.inquilinos;
+	}
+
+	public void setInquilinos (Set<UnidadFuncionalInquilino> inquilinos) {
+		this.inquilinos = inquilinos;
+	}
+
+	@Transient
 	public Inquilino getInquilino () {
-		return this.inquilino;
+		for (UnidadFuncionalInquilino ufi : this.inquilinos) {
+			if (ufi.isHabilitado()) {
+				return ufi.getInquilino();
+			}
+		}
+		return null;
 	}
 
-	public void setInquilino (Inquilino inquilino) {
-		this.inquilino = inquilino;
+	@Transient
+	public Propietario getPropietario () {
+		for (UnidadFuncionalPropietario ufp : this.propietarios) {
+			if (ufp.isHabilitado()) {
+				return ufp.getPropietario();
+			}
+		}
+		return null;
 	}
 }
