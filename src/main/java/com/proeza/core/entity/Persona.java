@@ -30,7 +30,7 @@ public abstract class Persona implements java.io.Serializable {
 	private Direccion			direccion;
 	private String				email;
 	private String				sexo;
-	private int					estado;
+	private Boolean				habilitado;
 	private Documento			documento;
 	private Telefono			telefono;
 	private Foto				foto;
@@ -38,11 +38,11 @@ public abstract class Persona implements java.io.Serializable {
 	public Persona () {
 	}
 
-	public Persona (String nombre, String apellido, String sexo, int estado) {
+	public Persona (String nombre, String apellido, String sexo, Boolean habilitado) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.sexo = sexo;
-		this.estado = estado;
+		this.habilitado = habilitado;
 	}
 
 	@Id
@@ -132,12 +132,12 @@ public abstract class Persona implements java.io.Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "estado", nullable = false)
-	public int getEstado () {
-		return this.estado;
+	@Column(name = "habilitado", nullable = false)
+	public Boolean isHabilitado () {
+		return this.habilitado;
 	}
 
-	public void setEstado (int estado) {
-		this.estado = estado;
+	public void setHabilitado (Boolean habilitado) {
+		this.habilitado = habilitado;
 	}
 }

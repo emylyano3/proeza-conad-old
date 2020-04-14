@@ -5,12 +5,12 @@
 	<table-filter match-catalog="cad_proeza_dev_db" match-name="cad_.*" match-schema=".*"></table-filter>
 	<table-filter match-catalog="cad_proeza_dev_db" match-name="cmn_.*" match-schema=".*"></table-filter>
 	<table-filter match-catalog="cad_proeza_dev_db" match-name="seg_.*" match-schema=".*"></table-filter>
-	
+
 	<table catalog="cad_proeza_dev_db" name="seg_usuario" class="com.proeza.security.entity.Usuario">
 	</table>
 	<table catalog="cad_proeza_dev_db" name="seg_rol" class="com.proeza.security.entity.Rol">
 	</table>
-	
+
 	<table catalog="cad_proeza_dev_db" name="cmn_documento" class="com.proeza.core.entity.Documento">
 	</table>
 	<table catalog="cad_proeza_dev_db" name="cmn_documento_tipo" class="com.proeza.core.entity.TipoDocumento">
@@ -23,7 +23,7 @@
 	</table>
 	<table catalog="cad_proeza_dev_db" name="cmn_foto" class="com.proeza.core.entity.Foto">
 	</table>
-	
+
 	<table catalog="cad_proeza_dev_db" name="cad_consorcio" class="com.proeza.conad.entity.Consorcio">
 		<column name="id"></column>
 		<column name="nombre"></column>
@@ -70,9 +70,20 @@
 	<table catalog="cad_proeza_dev_db" name="cad_unidad_funcional" class="com.proeza.conad.entity.UnidadFuncional">
 		<column name="id"></column>
 		<column name="codigo"></column>
-		<column name="fk_consorcio"></column>
-		<column name="fk_tipo"></column>
+		<column name="fk_consorcio" property="consorcio"></column>
+		<column name="fk_tipo" property="tipo"></column>
 		<column name="estado"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_cuenta" class="com.proeza.conad.entity.Cuenta">
+		<column name="id"></column>
+		<column name="monto"></column>
+		<column name="estado"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_cuenta_movimiento" class="com.proeza.conad.entity.MovimientoCuenta">
+		<column name="id"></column>
+		<column name="fk_cuenta" property="cuenta"></column>
+		<column name="monto"></column>
+		<column name="fecha"></column>
 	</table>
 	<table catalog="cad_proeza_dev_db" name="cmn_persona" class="com.proeza.conad.entity.Persona">
 		<column name="id"></column>

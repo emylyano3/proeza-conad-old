@@ -26,7 +26,8 @@ public class UnidadFuncional implements java.io.Serializable {
 
 	private Long				id;
 	private String				codigo;
-	private Integer				estado;
+	private Double				incidencia;
+	private Boolean				habilitado;
 	private Consorcio			consorcio;
 	private TipoUnidadFuncional	tipoUnidadFuncional;
 	private Propietario			propietario;
@@ -81,13 +82,22 @@ public class UnidadFuncional implements java.io.Serializable {
 		this.codigo = codigo;
 	}
 
-	@Column(name = "estado", nullable = false)
-	public Integer getEstado () {
-		return this.estado;
+	@Column(name = "incidencia", nullable = false)
+	public Double getIncidencia () {
+		return this.incidencia;
 	}
 
-	public void setEstado (Integer estado) {
-		this.estado = estado;
+	public void setIncidencia (Double incidencia) {
+		this.incidencia = incidencia;
+	}
+
+	@Column(name = "habilitado", nullable = false)
+	public Boolean isHabilitado () {
+		return this.habilitado;
+	}
+
+	public void setHabilitado (Boolean habilitado) {
+		this.habilitado = habilitado;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

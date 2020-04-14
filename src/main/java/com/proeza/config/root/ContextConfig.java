@@ -50,28 +50,12 @@ import com.proeza.sgs.business.chart.ChartColorManager;
 import net.sf.ehcache.CacheException;
 
 @Configuration
-@Import(value = {
-	DataSourceConfig.class,
-	JpaConfig.class,
-	SecurityConfig.class
+@Import(value = {DataSourceConfig.class, JpaConfig.class, SecurityConfig.class
 })
-@ComponentScan(basePackages = {
-	"com.proeza.core.config",
-	"com.proeza.core.service",
-	"com.proeza.core.tracking",
-	"com.proeza.core.datamapper",
-	"com.proeza.core.context",
-	"com.proeza.core.classmapper",
-	"com.proeza.security.dao",
-	"com.proeza.security.service",
-	"com.proeza.sgs.business",
-	"com.proeza.conad",
-	"com.proeza.system",
-}, excludeFilters = {
-	@Filter(Configuration.class),
-	@Filter(Controller.class),
-	@Filter(RestController.class)
-})
+@ComponentScan(
+	basePackages = {"com.proeza.core.config", "com.proeza.core.service", "com.proeza.core.tracking", "com.proeza.core.datamapper", "com.proeza.core.context", "com.proeza.core.classmapper", "com.proeza.security.dao", "com.proeza.security.service", "com.proeza.sgs.business", "com.proeza.conad", "com.proeza.system",
+	}, excludeFilters = {@Filter(Configuration.class), @Filter(Controller.class), @Filter(RestController.class)
+	})
 @EnableAsync
 @EnableCaching
 @EnableScheduling
@@ -79,28 +63,28 @@ import net.sf.ehcache.CacheException;
 @EnableTransactionManagement
 public class ContextConfig {
 
-	private static final String MESSAGES_LOCATION       = "/WEB-INF/messages/messages";
-	private static final String VIEWS_LOCATION          = "/WEB-INF/views/";
-	private static final String JS_LOCATION             = "/WEB-INF/js/";
-	private static final String MAIL_VIEWS_LOCATION     = "mail/";
-	private static final String EHCACHE_CONFIG_LOCATION = "classpath:ehcache.xml";
+	private static final String	MESSAGES_LOCATION		= "/WEB-INF/messages/messages";
+	private static final String	VIEWS_LOCATION			= "/WEB-INF/views/";
+	private static final String	JS_LOCATION				= "/WEB-INF/js/";
+	private static final String	MAIL_VIEWS_LOCATION		= "mail/";
+	private static final String	EHCACHE_CONFIG_LOCATION	= "classpath:ehcache.xml";
 
 	@Autowired
-	private MailSettings        mailSettings;
+	private MailSettings		mailSettings;
 
 	@Autowired
-	private GeneralSettings     generalSettings;
+	private GeneralSettings		generalSettings;
 
 	@Autowired
-	private ApplicationContext  context;
+	private ApplicationContext	context;
 
 	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertyPlaceHolderConfigurer() {
+	public static PropertySourcesPlaceholderConfigurer propertyPlaceHolderConfigurer () {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
 
 	@Bean
-	public MessageSource messageSource() {
+	public MessageSource messageSource () {
 		final ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename(MESSAGES_LOCATION);
 		messageSource.setDefaultEncoding(ConfigConsts.DEFAULT_ENCODING);
@@ -108,54 +92,53 @@ public class ContextConfig {
 	}
 
 	@Bean
-	public com.proeza.core.resources.message.IMessageResolver proezaMessageResolver(MessageSource messageSource, LocaleResolver localeResolver) {
+	public com.proeza.core.resources.message.IMessageResolver proezaMessageResolver (MessageSource messageSource, LocaleResolver localeResolver) {
 		return new MessageResolver(messageSource, localeResolver);
 	}
 
 	@Bean
-	public LocaleResolver localeResolver() {
+	public LocaleResolver localeResolver () {
 		return new FixedLocaleResolver();
 	}
 
 	@Bean
-	public CacheManager cacheManager() throws CacheException, IOException {
-		return new EhCacheCacheManager(net.sf.ehcache.CacheManager.create(
-			this.context.getResource(EHCACHE_CONFIG_LOCATION).getInputStream()));
+	public CacheManager cacheManager () throws CacheException, IOException {
+		return new EhCacheCacheManager(net.sf.ehcache.CacheManager.create(this.context.getResource(EHCACHE_CONFIG_LOCATION).getInputStream()));
 	}
 
 	@Bean
-	public ImageManager imageManager() {
+	public ImageManager imageManager () {
 		return new ImageManager();
 	}
 
 	@Bean
-	public IMessageResolver messageResolver(MessageSource messageSource) {
+	public IMessageResolver messageResolver (MessageSource messageSource) {
 		final SpringMessageResolver messageResolver = new SpringMessageResolver();
 		messageResolver.setMessageSource(messageSource);
 		return messageResolver;
 	}
 
 	@Bean
-	public ViewResolver htmlResolver(IMessageResolver messageResolver) {
+	public ViewResolver htmlResolver (IMessageResolver messageResolver) {
 		final ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 		resolver.setTemplateEngine(templateEngine(messageResolver, htmlTemplateResolver()));
 		resolver.setContentType("text/html");
 		resolver.setCharacterEncoding(ConfigConsts.DEFAULT_ENCODING);
-		resolver.setViewNames(new String[]{"*.html"});
+		resolver.setViewNames(new String[] {"*.html"});
 		return resolver;
 	}
 
 	@Bean
-	public ViewResolver jsResolver(IMessageResolver messageResolver) {
+	public ViewResolver jsResolver (IMessageResolver messageResolver) {
 		final ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 		resolver.setTemplateEngine(templateEngine(messageResolver, jsTemplateResolver()));
 		resolver.setContentType("application/javascript");
 		resolver.setCharacterEncoding(ConfigConsts.DEFAULT_ENCODING);
-		resolver.setViewNames(new String[]{"*.js"});
+		resolver.setViewNames(new String[] {"*.js"});
 		return resolver;
 	}
 
-	private TemplateEngine templateEngine(IMessageResolver messageResolver, ITemplateResolver templateResolver) {
+	private TemplateEngine templateEngine (IMessageResolver messageResolver, ITemplateResolver templateResolver) {
 		final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.addTemplateResolver(templateResolver);
 		templateEngine.addDialect(new SpringSecurityDialect());
@@ -163,7 +146,7 @@ public class ContextConfig {
 		return templateEngine;
 	}
 
-	private ITemplateResolver htmlTemplateResolver() {
+	private ITemplateResolver htmlTemplateResolver () {
 		final SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
 		resolver.setApplicationContext(this.context);
 		resolver.setPrefix(VIEWS_LOCATION);
@@ -172,7 +155,7 @@ public class ContextConfig {
 		return resolver;
 	}
 
-	private ITemplateResolver jsTemplateResolver() {
+	private ITemplateResolver jsTemplateResolver () {
 		final SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
 		resolver.setApplicationContext(this.context);
 		resolver.setPrefix(JS_LOCATION);
@@ -182,7 +165,7 @@ public class ContextConfig {
 	}
 
 	@Bean
-	public TemplateEngine mailTemplateEngine(IMessageResolver messageResolver) {
+	public TemplateEngine mailTemplateEngine (IMessageResolver messageResolver) {
 		final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.addTemplateResolver(emailTemplateResolver());
 		templateEngine.addDialect(new SpringSecurityDialect());
@@ -190,7 +173,7 @@ public class ContextConfig {
 		return templateEngine;
 	}
 
-	private ITemplateResolver emailTemplateResolver() {
+	private ITemplateResolver emailTemplateResolver () {
 		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
 		templateResolver.setPrefix(MAIL_VIEWS_LOCATION);
 		templateResolver.setTemplateMode(TemplateMode.HTML);
@@ -199,7 +182,7 @@ public class ContextConfig {
 	}
 
 	@Bean
-	public JavaMailSender mailSender() {
+	public JavaMailSender mailSender () {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setHost(this.mailSettings.getHost());
 		mailSender.setPort(this.mailSettings.getPort());
@@ -212,7 +195,7 @@ public class ContextConfig {
 
 	@Bean
 	@Scope(BeanDefinition.SCOPE_PROTOTYPE)
-	public ChartColorManager chartColorManager() {
+	public ChartColorManager chartColorManager () {
 		ChartColorManager chartColorManager = new ChartColorManager();
 		chartColorManager.addColor(new ChartColor("#C0392C", "#E56658"));
 		chartColorManager.addColor(new ChartColor("#3498DB", "#3EA1E4"));

@@ -1,11 +1,11 @@
 /* Seguridad */
 
     /* Personas */
-    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, estado) values (100, 'user_admin','user_admin', 'M', 'user_admin@proeza.com.ar', 1);
-    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, estado) values (101, 'prod_admin','prod_admin', 'M', 'prod_admin@proeza.com.ar', 1);
-    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, estado) values (102, 'prod_viewer','prod_viewer', 'M', 'prod_viewer@proeza.com.ar', 1);
-    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, estado) values (103, 'prod_stat','prod_stat', 'M', 'prod_stat@proeza.com.ar', 1);
-    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, estado) values (104, 'admin','admin', 'M', 'admin@proeza.com.ar', 1);
+    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, habilitado) values (100, 'user_admin','user_admin', 'M', 'user_admin@proeza.com.ar', 1);
+    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, habilitado) values (101, 'prod_admin','prod_admin', 'M', 'prod_admin@proeza.com.ar', 1);
+    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, habilitado) values (102, 'prod_viewer','prod_viewer', 'M', 'prod_viewer@proeza.com.ar', 1);
+    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, habilitado) values (103, 'prod_stat','prod_stat', 'M', 'prod_stat@proeza.com.ar', 1);
+    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, habilitado) values (104, 'admin','admin', 'M', 'admin@proeza.com.ar', 1);
     
 	/* Usuarios */
 	insert into cad_proeza_test_db.seg_usuario (fk_persona, alias, password) values (100, 'user_admin', '$2a$10$oTBcDbxPZlyEhjK4/Q8.o.PCiqc.LwOg5IgF7e4VWAzkDMlVr0cvW');
