@@ -26,7 +26,7 @@ public class UnidadFuncionalPropietario implements java.io.Serializable {
 	private Long				id;
 	private Propietario			propietario;
 	private UnidadFuncional		unidadFuncional;
-	private int					estado;
+	private int					habilitado;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -59,13 +59,12 @@ public class UnidadFuncionalPropietario implements java.io.Serializable {
 		this.unidadFuncional = unidadFuncional;
 	}
 
-	@Column(name = "estado", nullable = false)
-	public int getEstado () {
-		return this.estado;
+	@Column(name = "habilitado", nullable = false, columnDefinition = "BIT")
+	public int isHabilitado () {
+		return this.habilitado;
 	}
 
-	public void setEstado (int estado) {
-		this.estado = estado;
+	public void setHabilitado (int habilitado) {
+		this.habilitado = habilitado;
 	}
-
 }

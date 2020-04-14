@@ -15,7 +15,8 @@ public class UsuarioBuilder {
 	private String		email;
 	private String		password;
 	private String		sexo;
-	private Set<Rol>	roles	= new HashSet<>(0);
+	private Boolean		habilitado	= true;
+	private Set<Rol>	roles		= new HashSet<>(0);
 
 	public UsuarioBuilder withId (Long id) {
 		this.id = id;
@@ -67,6 +68,7 @@ public class UsuarioBuilder {
 		user.setSexo(this.sexo);
 		user.setRoles(this.roles);
 		user.setId(this.id);
+		user.setHabilitado(this.habilitado);
 		return user;
 	}
 }

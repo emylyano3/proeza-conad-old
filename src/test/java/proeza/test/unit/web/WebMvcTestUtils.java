@@ -91,14 +91,13 @@ public class WebMvcTestUtils {
     }
 
     public static String buildPagePath (String group, String name, String suffix) {
-        StringBuilder sb = new StringBuilder();
-        sb
+       return new StringBuilder()
             .append(group)
             .append("/")
             .append(name)
             .append(".")
-            .append(suffix);
-        return sb.toString();
+            .append(suffix)
+            .toString();
     }
 
     private synchronized static long getNextId () {

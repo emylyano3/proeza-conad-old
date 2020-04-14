@@ -22,20 +22,20 @@ import static javax.persistence.GenerationType.*;
 @Table(name = "cad_uf_inquilino")
 public class UnidadFuncionalInquilino implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long	serialVersionUID	= 1L;
 
-	private Long			id;
-	private Inquilino		inquilino;
-	private UnidadFuncional	unidadFuncional;
-	private int				estado;
+	private Long				id;
+	private Inquilino			inquilino;
+	private UnidadFuncional		unidadFuncional;
+	private int					habilitado;
 
 	public UnidadFuncionalInquilino () {
 	}
 
-	public UnidadFuncionalInquilino (Inquilino inquilino, UnidadFuncional unidadFuncional, int estado) {
+	public UnidadFuncionalInquilino (Inquilino inquilino, UnidadFuncional unidadFuncional, int habilitado) {
 		this.inquilino = inquilino;
 		this.unidadFuncional = unidadFuncional;
-		this.estado = estado;
+		this.habilitado = habilitado;
 	}
 
 	@Id
@@ -69,12 +69,12 @@ public class UnidadFuncionalInquilino implements java.io.Serializable {
 		this.unidadFuncional = unidadFuncional;
 	}
 
-	@Column(name = "estado", nullable = false)
-	public int getEstado () {
-		return this.estado;
+	@Column(name = "habilitado", nullable = false, columnDefinition = "BIT")
+	public int isHabilitado () {
+		return this.habilitado;
 	}
 
-	public void setEstado (int estado) {
-		this.estado = estado;
+	public void setHabilitado (int habilitado) {
+		this.habilitado = habilitado;
 	}
 }

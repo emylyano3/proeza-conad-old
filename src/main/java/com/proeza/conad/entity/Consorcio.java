@@ -32,22 +32,20 @@ public class Consorcio implements java.io.Serializable {
 	private String					nombre;
 	private String					descripcion;
 	private String					email;
-	private int						estado;
+	private Boolean					habilitado;
 	private Direccion				direccion;
 	private Set<Consorcista>		consorcistas		= new HashSet<Consorcista>(0);
 	private Set<UnidadFuncional>	unidadesFuncionales	= new HashSet<UnidadFuncional>(0);
-	// private Set<Propietario> propietarios = new HashSet<Propietario>(0);
-	// private Set<Inquilino> inquilinos = new HashSet<Inquilino>(0);
 
 	public Consorcio () {
 	}
 
-	public Consorcio (long id, Direccion direccion, String nombre, String email, int estado) {
+	public Consorcio (long id, Direccion direccion, String nombre, String email, Boolean habilitado) {
 		this.id = id;
 		this.direccion = direccion;
 		this.nombre = nombre;
 		this.email = email;
-		this.estado = estado;
+		this.habilitado = habilitado;
 	}
 
 	@Id
@@ -98,23 +96,14 @@ public class Consorcio implements java.io.Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "estado", nullable = false)
-	public int getEstado () {
-		return this.estado;
+	@Column(name = "habilitado", nullable = false, columnDefinition = "BIT")
+	public Boolean isHabilitado () {
+		return this.habilitado;
 	}
 
-	public void setEstado (int estado) {
-		this.estado = estado;
+	public void setHabilitado (Boolean habilitado) {
+		this.habilitado = habilitado;
 	}
-
-	// @OneToMany(fetch = FetchType.LAZY, mappedBy = "consorcio")
-	// public Set<Propietario> getPropietarios () {
-	// return this.propietarios;
-	// }
-	//
-	// public void setPropietarios (Set<Propietario> propietarios) {
-	// this.propietarios = propietarios;
-	// }
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
@@ -138,13 +127,4 @@ public class Consorcio implements java.io.Serializable {
 	public void setUnidadesFuncionales (Set<UnidadFuncional> unidadesFuncionales) {
 		this.unidadesFuncionales = unidadesFuncionales;
 	}
-
-	// @OneToMany(fetch = FetchType.LAZY, mappedBy = "consorcio")
-	// public Set<Inquilino> getInquilinos () {
-	// return this.inquilinos;
-	// }
-	//
-	// public void setInquilinos (Set<Inquilino> inquilinos) {
-	// this.inquilinos = inquilinos;
-	// }
 }

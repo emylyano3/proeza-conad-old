@@ -1,6 +1,8 @@
 package com.proeza.conad.entity;
 // Generated Apr 11, 2020, 7:13:39 PM by Hibernate Tools 5.2.12.Final
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +28,8 @@ public class UnidadFuncional implements java.io.Serializable {
 
 	private Long				id;
 	private String				codigo;
-	private Integer				estado;
+	private BigDecimal			incidencia;
+	private Boolean				habilitado;
 	private Consorcio			consorcio;
 	private TipoUnidadFuncional	tipoUnidadFuncional;
 	private Propietario			propietario;
@@ -81,13 +84,22 @@ public class UnidadFuncional implements java.io.Serializable {
 		this.codigo = codigo;
 	}
 
-	@Column(name = "estado", nullable = false)
-	public Integer getEstado () {
-		return this.estado;
+	@Column(name = "incidencia", nullable = false, precision = 10, scale = 3)
+	public BigDecimal getIncidencia () {
+		return this.incidencia;
 	}
 
-	public void setEstado (Integer estado) {
-		this.estado = estado;
+	public void setIncidencia (BigDecimal incidencia) {
+		this.incidencia = incidencia;
+	}
+
+	@Column(name = "habilitado", nullable = false, columnDefinition = "BIT")
+	public Boolean isHabilitado () {
+		return this.habilitado;
+	}
+
+	public void setHabilitado (Boolean habilitado) {
+		this.habilitado = habilitado;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

@@ -217,7 +217,7 @@ CREATE TABLE `art_resource` (
   `data` longblob NOT NULL,
   `preview` longblob,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -313,17 +313,17 @@ DROP TABLE IF EXISTS `cad_consorcio`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cad_consorcio` (
-  `id` bigint(20) unsigned zerofill NOT NULL,
+  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) CHARACTER SET latin1 NOT NULL,
   `descripcion` varchar(1000) CHARACTER SET latin1 DEFAULT NULL,
   `fk_direccion` bigint(20) unsigned zerofill NOT NULL,
   `email` varchar(200) CHARACTER SET latin1 NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT '1',
+  `habilitado` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_uk` (`id`),
   KEY `cons_dire_idx` (`fk_direccion`),
   CONSTRAINT `fk_cons_dire` FOREIGN KEY (`fk_direccion`) REFERENCES `cmn_direccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,14 +337,14 @@ CREATE TABLE `cad_consorcio_consorcista` (
   `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `fk_consorcista` bigint(20) unsigned zerofill NOT NULL,
   `fk_consorcio` bigint(20) unsigned zerofill NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`,`fk_consorcista`,`fk_consorcio`),
+  `habilitado` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `id_uk` (`id`),
-  KEY `fk_cc_rcio_idx` (`fk_consorcio`),
   KEY `fk_cc_ista_idx` (`fk_consorcista`),
-  CONSTRAINT `fk_cc_ista` FOREIGN KEY (`fk_consorcista`) REFERENCES `cad_consorcista` (`fk_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `fk_cc_rcio_idx` (`fk_consorcio`),
+  CONSTRAINT `fk_cc_ista` FOREIGN KEY (`fk_consorcista`) REFERENCES `cad_consorcista` (`fk_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cc_rcio` FOREIGN KEY (`fk_consorcio`) REFERENCES `cad_consorcio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Asociacion de consorcio con consorcistas';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Asociacion de consorcio con consorcistas';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -355,11 +355,102 @@ DROP TABLE IF EXISTS `cad_consorcista`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cad_consorcista` (
-  `fk_persona` bigint(20) unsigned zerofill NOT NULL,
-  PRIMARY KEY (`fk_persona`),
-  UNIQUE KEY `fk_persona_uk` (`fk_persona`),
-  CONSTRAINT `fk_cons_pers` FOREIGN KEY (`fk_persona`) REFERENCES `cmn_persona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `fk_usuario` bigint(20) unsigned zerofill NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fk_usuario_uk` (`fk_usuario`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `fk_usuario_idx` (`fk_usuario`),
+  CONSTRAINT `fk_cons_usua` FOREIGN KEY (`fk_usuario`) REFERENCES `seg_usuario` (`fk_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cad_cuenta`
+--
+
+DROP TABLE IF EXISTS `cad_cuenta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cad_cuenta` (
+  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `saldo` decimal(10,3) NOT NULL DEFAULT '0.000',
+  `habilitado` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cad_cuenta_movimiento`
+--
+
+DROP TABLE IF EXISTS `cad_cuenta_movimiento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cad_cuenta_movimiento` (
+  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `monto` decimal(10,3) NOT NULL,
+  `fecha` date NOT NULL,
+  `fk_cuenta` bigint(20) unsigned zerofill NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `fk_cuenta_idx` (`fk_cuenta`),
+  CONSTRAINT `fk_movi_cuen` FOREIGN KEY (`fk_cuenta`) REFERENCES `cad_cuenta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cad_expensa`
+--
+
+DROP TABLE IF EXISTS `cad_expensa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cad_expensa` (
+  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `valor` decimal(10,3) NOT NULL,
+  `creacion` date NOT NULL COMMENT 'Cuando fue dada de alta',
+  `inicio` date NOT NULL COMMENT 'Cuando entra en vigencia',
+  `fk_tipo` bigint(20) unsigned zerofill NOT NULL,
+  `fk_consorcio` bigint(20) unsigned zerofill NOT NULL,
+  `habilitado` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cad_expensa_tipo`
+--
+
+DROP TABLE IF EXISTS `cad_expensa_tipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cad_expensa_tipo` (
+  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) COLLATE utf8_bin NOT NULL,
+  `descripcion` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `nombre_UNIQUE` (`nombre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cad_expensa_uf`
+--
+
+DROP TABLE IF EXISTS `cad_expensa_uf`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cad_expensa_uf` (
+  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `fk_expensa` bigint(20) unsigned zerofill NOT NULL,
+  `fk_uf` bigint(20) unsigned zerofill NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relacion entre las expensas particulares y las unidades funcionales';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -370,10 +461,17 @@ DROP TABLE IF EXISTS `cad_inquilino`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cad_inquilino` (
-  `fk_persona` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`fk_persona`),
-  CONSTRAINT `fk_persona` FOREIGN KEY (`fk_persona`) REFERENCES `cmn_persona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `fk_usuario` bigint(20) unsigned zerofill NOT NULL,
+  `fk_cuenta` bigint(20) unsigned zerofill DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `fk_usuario_UNIQUE` (`fk_usuario`),
+  KEY `fk_usuario_idx` (`fk_usuario`),
+  KEY `fk_inqu_cuen_idx` (`fk_cuenta`),
+  CONSTRAINT `fk_inqu_cuen` FOREIGN KEY (`fk_cuenta`) REFERENCES `cad_cuenta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_inqu_usua` FOREIGN KEY (`fk_usuario`) REFERENCES `seg_usuario` (`fk_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -384,10 +482,17 @@ DROP TABLE IF EXISTS `cad_propietario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cad_propietario` (
-  `fk_persona` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`fk_persona`),
-  CONSTRAINT `fk_prop_pers` FOREIGN KEY (`fk_persona`) REFERENCES `cmn_persona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `fk_usuario` bigint(20) unsigned zerofill NOT NULL,
+  `fk_cuenta` bigint(20) unsigned zerofill DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `fk_usuario_UNIQUE` (`fk_usuario`),
+  KEY `fk_usuario_idx` (`fk_usuario`),
+  KEY `fk_prop_cuen_idx` (`fk_cuenta`),
+  CONSTRAINT `fk_prop_cuen` FOREIGN KEY (`fk_cuenta`) REFERENCES `cad_cuenta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_prop_usua` FOREIGN KEY (`fk_usuario`) REFERENCES `seg_usuario` (`fk_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -401,14 +506,13 @@ CREATE TABLE `cad_uf_inquilino` (
   `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `fk_inquilino` bigint(20) unsigned zerofill NOT NULL,
   `fk_uf` bigint(20) unsigned zerofill NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
+  `habilitado` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`fk_inquilino`),
   UNIQUE KEY `id_uk` (`id`),
-  KEY `fk_inquilino_idx` (`fk_inquilino`),
   KEY `fk_uf_idx` (`fk_uf`),
-  CONSTRAINT `fk_inquilino` FOREIGN KEY (`fk_inquilino`) REFERENCES `cad_inquilino` (`fk_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_uf` FOREIGN KEY (`fk_uf`) REFERENCES `cad_unidad_funcional` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relacion entre inquilinos y unidades funcionales';
+  CONSTRAINT `fk_ufin_inqui` FOREIGN KEY (`fk_inquilino`) REFERENCES `cad_inquilino` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ufin_uf` FOREIGN KEY (`fk_uf`) REFERENCES `cad_unidad_funcional` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relacion entre inquilinos y unidades funcionales';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -422,14 +526,14 @@ CREATE TABLE `cad_uf_propietario` (
   `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `fk_propietario` bigint(20) unsigned zerofill NOT NULL,
   `fk_uf` bigint(20) unsigned zerofill NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT '1',
+  `habilitado` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_uk` (`id`),
-  KEY `fk_ufp_prop_idx` (`fk_propietario`),
-  KEY `fk_ufp_uf_idx` (`fk_uf`),
-  CONSTRAINT `fk_ufp_prop` FOREIGN KEY (`fk_propietario`) REFERENCES `cad_propietario` (`fk_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ufp_uf` FOREIGN KEY (`fk_uf`) REFERENCES `cad_unidad_funcional` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relacion entre propietarios y unidades funcionales';
+  KEY `fk_ufpr_prop_idx` (`fk_propietario`),
+  KEY `fk_ufpp_uf_idx` (`fk_uf`),
+  CONSTRAINT `fk_ufpr_prop` FOREIGN KEY (`fk_propietario`) REFERENCES `cad_propietario` (`fk_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ufpr_uf` FOREIGN KEY (`fk_uf`) REFERENCES `cad_unidad_funcional` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relacion entre propietarios y unidades funcionales';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -441,12 +545,12 @@ DROP TABLE IF EXISTS `cad_uf_tipo`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cad_uf_tipo` (
   `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  `codigo` varchar(20) COLLATE utf8_bin NOT NULL,
   `nombre` varchar(45) COLLATE utf8_bin NOT NULL,
   `descripcion` varchar(200) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_uk` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tipo de unidad funcional';
+  UNIQUE KEY `id_uk` (`id`),
+  UNIQUE KEY `nombre_UNIQUE` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tipo de unidad funcional';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -459,16 +563,17 @@ DROP TABLE IF EXISTS `cad_unidad_funcional`;
 CREATE TABLE `cad_unidad_funcional` (
   `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `codigo` varchar(20) COLLATE utf8_bin NOT NULL,
-  `fk_tipo_uf` bigint(20) unsigned zerofill NOT NULL,
+  `fk_tipo` bigint(20) unsigned zerofill NOT NULL,
   `fk_consorcio` bigint(20) unsigned zerofill NOT NULL,
-  `estado` int(11) DEFAULT '1',
+  `incidencia` decimal(10,0) NOT NULL,
+  `habilitado` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_uk` (`id`),
-  KEY `fk_uf_tuf_idx` (`fk_tipo_uf`),
-  KEY `fk_un_cons_idx` (`fk_consorcio`),
-  CONSTRAINT `fk_consorcio` FOREIGN KEY (`fk_consorcio`) REFERENCES `cad_consorcio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_uf_tuf` FOREIGN KEY (`fk_tipo_uf`) REFERENCES `cad_uf_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Unidades funcionales que componen un consorcio';
+  KEY `fk_uf_tuf_idx` (`fk_tipo`),
+  KEY `fk_uf_cons_idx` (`fk_consorcio`),
+  CONSTRAINT `fk_uf_cons` FOREIGN KEY (`fk_consorcio`) REFERENCES `cad_consorcio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_uf_tuf` FOREIGN KEY (`fk_tipo`) REFERENCES `cad_uf_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Unidades funcionales que componen un consorcio';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -491,7 +596,44 @@ CREATE TABLE `cmn_direccion` (
   `descripcion` varchar(1000) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_uk` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cmn_documento`
+--
+
+DROP TABLE IF EXISTS `cmn_documento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cmn_documento` (
+  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `codigo` varchar(20) COLLATE utf8_bin NOT NULL,
+  `fk_tipo` bigint(20) unsigned zerofill NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_uk` (`id`),
+  UNIQUE KEY `cod_tipo_uk` (`codigo`,`fk_tipo`),
+  KEY `fk_docu_tipo_idx` (`fk_tipo`),
+  CONSTRAINT `fk_docu_tipo` FOREIGN KEY (`fk_tipo`) REFERENCES `cmn_documento_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cmn_documento_tipo`
+--
+
+DROP TABLE IF EXISTS `cmn_documento_tipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cmn_documento_tipo` (
+  `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `codigo` varchar(10) COLLATE utf8_bin NOT NULL,
+  `nombre` varchar(45) COLLATE utf8_bin NOT NULL,
+  `descripcion` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_uk` (`id`),
+  UNIQUE KEY `codigo_uk` (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -509,7 +651,7 @@ CREATE TABLE `cmn_error` (
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_excepcion` (`excepcion`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -525,7 +667,7 @@ CREATE TABLE `cmn_foto` (
   `media_type` varchar(50) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -595,7 +737,7 @@ CREATE TABLE `cmn_movimiento` (
   PRIMARY KEY (`id`),
   KEY `entidad_idx` (`fk_entidad`),
   KEY `tipo_mov` (`tipo_mov`)
-) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=659 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -612,10 +754,19 @@ CREATE TABLE `cmn_persona` (
   `sexo` varchar(1) CHARACTER SET utf8 NOT NULL DEFAULT 'M' COMMENT 'Sexo de la persona',
   `email` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
   `fk_foto` bigint(20) unsigned zerofill DEFAULT NULL,
-  `estado` int(11) NOT NULL DEFAULT '1',
+  `habilitado` bit(1) NOT NULL DEFAULT b'1',
+  `fk_telefono` bigint(20) unsigned zerofill DEFAULT NULL,
+  `fk_documento` bigint(20) unsigned zerofill DEFAULT NULL,
+  `fk_direccion` bigint(20) unsigned zerofill DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_pers_foto_idx` (`fk_foto`),
-  CONSTRAINT `fk_pers_foto` FOREIGN KEY (`fk_foto`) REFERENCES `cmn_foto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_pers_tele_idx` (`fk_telefono`),
+  KEY `fk_pers_dire_idx` (`fk_direccion`),
+  KEY `fk_pers_docu_idx` (`fk_documento`),
+  CONSTRAINT `fk_pers_dire` FOREIGN KEY (`fk_direccion`) REFERENCES `cmn_direccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pers_docu` FOREIGN KEY (`fk_documento`) REFERENCES `cmn_documento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pers_foto` FOREIGN KEY (`fk_foto`) REFERENCES `cmn_foto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pers_tele` FOREIGN KEY (`fk_telefono`) REFERENCES `cmn_telefono` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Tabla que representa persona de manera asbtracta. ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -632,12 +783,9 @@ CREATE TABLE `cmn_telefono` (
   `pref_area` varchar(3) CHARACTER SET utf8 NOT NULL COMMENT 'Prefijo de area del numero telefonico',
   `numero` varchar(10) CHARACTER SET utf8 NOT NULL COMMENT 'Numero telefonico',
   `fk_tipo` bigint(20) unsigned zerofill NOT NULL,
-  `fk_persona` bigint(20) unsigned zerofill NOT NULL COMMENT 'FK a la tabla persona',
   PRIMARY KEY (`id`),
-  KEY `persona_idx` (`fk_persona`),
-  KEY `tipo_telefono_idx` (`fk_tipo`),
-  CONSTRAINT `telefono_persona` FOREIGN KEY (`fk_persona`) REFERENCES `cmn_persona` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `telefono_tt` FOREIGN KEY (`fk_tipo`) REFERENCES `cmn_telefono_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `tele_tt_idx` (`fk_tipo`),
+  CONSTRAINT `fk_tele_tt` FOREIGN KEY (`fk_tipo`) REFERENCES `cmn_telefono_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Tabla que define telefono';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -692,7 +840,7 @@ CREATE TABLE `seg_login` (
   PRIMARY KEY (`id`),
   KEY `usuario_idx` (`fk_usuario`),
   CONSTRAINT `login_usuario` FOREIGN KEY (`fk_usuario`) REFERENCES `seg_usuario` (`fk_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -728,7 +876,7 @@ CREATE TABLE `seg_usuario` (
   UNIQUE KEY `id_uk` (`fk_persona`),
   UNIQUE KEY `alias_uk` (`alias`),
   CONSTRAINT `fk_usua_pers` FOREIGN KEY (`fk_persona`) REFERENCES `cmn_persona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -748,7 +896,7 @@ CREATE TABLE `seg_usuario_rol` (
   KEY `rol_idx` (`fk_rol`),
   CONSTRAINT `fk_ur_rol` FOREIGN KEY (`fk_rol`) REFERENCES `seg_rol` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ur_usua` FOREIGN KEY (`fk_usuario`) REFERENCES `seg_usuario` (`fk_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -920,7 +1068,7 @@ SET character_set_client = utf8;
  1 AS `alias`,
  1 AS `email`,
  1 AS `sexo`,
- 1 AS `estado`,
+ 1 AS `habilitado`,
  1 AS `codigo_rol`,
  1 AS `nombre_rol`*/;
 SET character_set_client = @saved_cs_client;
@@ -938,7 +1086,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_usuario_roles` AS select `p`.`nombre` AS `nombre`,`p`.`apellido` AS `apellido`,`u`.`alias` AS `alias`,`p`.`email` AS `email`,`p`.`sexo` AS `sexo`,`p`.`estado` AS `estado`,`r`.`codigo` AS `codigo_rol`,`r`.`nombre` AS `nombre_rol` from (((`cmn_persona` `p` join `seg_usuario` `u` on((`u`.`fk_persona` = `p`.`id`))) join `seg_usuario_rol` `ur` on((`ur`.`fk_usuario` = `u`.`fk_persona`))) join `seg_rol` `r` on((`ur`.`fk_rol` = `r`.`id`))) */;
+/*!50001 VIEW `vw_usuario_roles` AS select `p`.`nombre` AS `nombre`,`p`.`apellido` AS `apellido`,`u`.`alias` AS `alias`,`p`.`email` AS `email`,`p`.`sexo` AS `sexo`,`p`.`habilitado` AS `habilitado`,`r`.`codigo` AS `codigo_rol`,`r`.`nombre` AS `nombre_rol` from (((`cmn_persona` `p` join `seg_usuario` `u` on((`u`.`fk_persona` = `p`.`id`))) join `seg_usuario_rol` `ur` on((`ur`.`fk_usuario` = `u`.`fk_persona`))) join `seg_rol` `r` on((`ur`.`fk_rol` = `r`.`id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -952,4 +1100,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-10 18:51:12
+-- Dump completed on 2020-04-14 19:24:32

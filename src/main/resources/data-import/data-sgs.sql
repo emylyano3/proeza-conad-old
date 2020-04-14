@@ -30,9 +30,9 @@
     insert into cad_proeza_test_db.art_articulo (codigo, fk_rubro, fk_clase, fk_tipo, fk_marca, modelo, descripcion, costo, precio, cantidad, habilitado) values ('PCES000004', 1, 2, 5, 2, 'Matrix 420', 'Pasahilo silicio', 1500, 2400, 2, 1);
     
     /* Persona */
-    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, estado) values (1, 'Dario','Romero','M', 'lalo@hotmail.com', 1);
-    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, estado) values (2, 'Jose Luis','Torres','M', 'lalo@hotmail.com', 1);
-    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, estado) values (3, 'Ricardo','Bruzzone','M', 'lalo@hotmail.com', 1);
+    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, habilitado) values (1, 'Dario','Romero','M', 'lalo@hotmail.com', 1);
+    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, habilitado) values (2, 'Jose Luis','Torres','M', 'lalo@hotmail.com', 1);
+    insert into cad_proeza_test_db.cmn_persona (id, nombre, apellido, sexo, email, habilitado) values (3, 'Ricardo','Bruzzone','M', 'lalo@hotmail.com', 1);
     
     
     /* Proveedor */

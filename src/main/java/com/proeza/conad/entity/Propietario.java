@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -27,6 +28,7 @@ public class Propietario implements Serializable {
 
 	private Long					id;
 	private Usuario					usuario;
+	private Cuenta					cuenta;
 	private Set<UnidadFuncional>	unidadesFuncionales	= new HashSet<UnidadFuncional>(0);
 
 	public Propietario () {
@@ -51,6 +53,16 @@ public class Propietario implements Serializable {
 
 	public void setUsuario (Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_cuenta")
+	public Cuenta getCuenta () {
+		return this.cuenta;
+	}
+
+	public void setCuenta (Cuenta cuenta) {
+		this.cuenta = cuenta;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY)
