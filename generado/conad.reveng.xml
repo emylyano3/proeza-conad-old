@@ -10,7 +10,6 @@
 	</table>
 	<table catalog="cad_proeza_dev_db" name="seg_rol" class="com.proeza.security.entity.Rol">
 	</table>
-
 	<table catalog="cad_proeza_dev_db" name="cmn_documento" class="com.proeza.core.entity.Documento">
 	</table>
 	<table catalog="cad_proeza_dev_db" name="cmn_documento_tipo" class="com.proeza.core.entity.TipoDocumento">
@@ -27,7 +26,7 @@
 	<table catalog="cad_proeza_dev_db" name="cad_consorcio" class="com.proeza.conad.entity.Consorcio">
 		<column name="id"></column>
 		<column name="nombre"></column>
-		<column name="estado"></column>
+		<column name="habilitado"></column>
 		<column name="descripcion"></column>
 		<column name="email"></column>
 		<column name="fk_direccion"></column>
@@ -39,7 +38,7 @@
 		<column name="id"></column>
 		<column name="fk_consorcista"></column>
 		<column name="fk_consorcio"></column>
-		<column name="estado"></column>
+		<column name="habilitado"></column>
 	</table>
 	<table catalog="cad_proeza_dev_db" name="cad_inquilino" class="com.proeza.conad.entity.Inquilino">
 		<column name="fk_usuario"></column>
@@ -53,13 +52,13 @@
 		<column name="id"></column>
 		<column name="fk_uf"></column>
 		<column name="fk_inquilino"></column>
-		<column name="estado"></column>
+		<column name="habilitado"></column>
 	</table>
 	<table catalog="cad_proeza_dev_db" name="cad_uf_propietario" class="com.proeza.conad.entity.UnidadFuncionalPropietario">
 		<column name="id"></column>
 		<column name="fk_uf"></column>
 		<column name="fk_propietario"></column>
-		<column name="estado"></column>
+		<column name="habilitado"></column>
 	</table>
 	<table catalog="cad_proeza_dev_db" name="cad_uf_tipo" class="com.proeza.conad.entity.TipoUnidadFuncional">
 		<column name="id"></column>
@@ -72,12 +71,12 @@
 		<column name="codigo"></column>
 		<column name="fk_consorcio" property="consorcio"></column>
 		<column name="fk_tipo" property="tipo"></column>
-		<column name="estado"></column>
+		<column name="habilitado"></column>
 	</table>
 	<table catalog="cad_proeza_dev_db" name="cad_cuenta" class="com.proeza.conad.entity.Cuenta">
 		<column name="id"></column>
 		<column name="monto"></column>
-		<column name="estado"></column>
+		<column name="habilitado"></column>
 	</table>
 	<table catalog="cad_proeza_dev_db" name="cad_cuenta_movimiento" class="com.proeza.conad.entity.MovimientoCuenta">
 		<column name="id"></column>
@@ -95,6 +94,65 @@
 		<column name="fk_documento"></column>
 		<column name="fk_telefono"></column>
 		<column name="fk_direccion"></column>
-		<column name="estado"></column>
+		<column name="habilitado"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_expensa_aplica" class="com.proeza.conad.entity.ExpensaAplica">
+		<column name="id"></column>
+		<column name="nombre"></column>
+		<column name="descripcion"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_expensa_tipo" class="com.proeza.conad.entity.ExpensaTipo">
+		<column name="id"></column>
+		<column name="nombre"></column>
+		<column name="descripcion"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_expensa_uf" class="com.proeza.conad.entity.ExpensaUnidadFuncional">
+		<column name="id"></column>
+		<column name="fk_expensa" property="expensa"></column>
+		<column name="fk_uf" property="unidadFuncional"></column>
+		<column name="habilitado"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_documento" class="com.proeza.conad.entity.Documento">
+		<column name="id"></column>
+		<column name="nombre"></column>
+		<column name="descripcion"></column>
+		<column name="media_type" property="mediaType"></column>
+		<column name="f_creacion" property="fechaCreacion"></column>
+		<column name="data"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_estado" class="com.proeza.conad.entity.Estado">
+		<column name="id"></column>
+		<column name="nombre"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_pago_inquilino" class="com.proeza.conad.entity.PagoInquilino">
+		<column name="id"></column>
+		<column name="fk_pago" property="pago"></column>
+		<column name="fk_inquilino" property="inquilino"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_pago_propietario" class="com.proeza.conad.entity.PagoPropietario">
+		<column name="id"></column>
+		<column name="fk_pago" property="pago"></column>
+		<column name="fk_propietario" property="propietario"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_pago" class="com.proeza.conad.entity.Pago">
+		<column name="id"></column>
+		<column name="monto"></column>
+		<column name="fk_estado" property="estado"></column>
+		<column name="f_alta" property="fechaAlta"></column>
+		<column name="f_revision" property="fechaRevision"></column>
+		<column name="recibo" property="recibo"></column>
+	</table>
+	<table catalog="cad_proeza_dev_db" name="cad_expensa" class="com.proeza.conad.entity.Expensa">
+		<column name="id"></column>
+		<column name="valor"></column>
+		<column name="nombre"></column>
+		<column name="descripcion"></column>
+		<column name="creacion"></column>
+		<column name="vigencia"></column>
+		<column name="duracion"></column>
+		<column name="fk_aplica" property="aplica"></column>
+		<column name="fk_tipo" property="tipo"></column>
+		<column name="fk_consorcio" property="consorcio"></column>
+		<column name="habilitado"></column>
 	</table>
 </hibernate-reverse-engineering>

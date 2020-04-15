@@ -53,7 +53,19 @@ import net.sf.ehcache.CacheException;
 @Import(value = {DataSourceConfig.class, JpaConfig.class, SecurityConfig.class
 })
 @ComponentScan(
-	basePackages = {"com.proeza.core.config", "com.proeza.core.service", "com.proeza.core.tracking", "com.proeza.core.datamapper", "com.proeza.core.context", "com.proeza.core.classmapper", "com.proeza.security.dao", "com.proeza.security.service", "com.proeza.sgs.business", "com.proeza.conad", "com.proeza.system",
+	basePackages = {
+		"com.proeza.core.config",
+		"com.proeza.core.persistence",
+		"com.proeza.core.service",
+		"com.proeza.core.tracking",
+		"com.proeza.core.datamapper",
+		"com.proeza.core.context",
+		"com.proeza.core.classmapper",
+		"com.proeza.security.dao",
+		"com.proeza.security.service",
+		"com.proeza.sgs.business",
+		"com.proeza.conad",
+		"com.proeza.system",
 	}, excludeFilters = {@Filter(Configuration.class), @Filter(Controller.class), @Filter(RestController.class)
 	})
 @EnableAsync

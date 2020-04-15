@@ -16,14 +16,14 @@ public class ConsorcioDalTest extends IntegrationTest {
 	private IConsorcioDao consorcioDao;
 
 	@Test
-	public void findConsorcio_BY_PK () {
+	public void find_BY_PK () {
 		Consorcio consorcio = this.consorcioDao.find(1L);
 		assertNotNull(consorcio);
 		assertNotNull(consorcio.getConsorcistas());
 		assertFalse(consorcio.getConsorcistas().isEmpty());
 		assertNotNull(consorcio.getUnidadesFuncionales());
 		assertFalse(consorcio.getUnidadesFuncionales().isEmpty());
-		assertEquals(3, consorcio.getUnidadesFuncionales().size());
+		assertEquals(4, consorcio.getUnidadesFuncionales().size());
 		for (UnidadFuncional uf : consorcio.getUnidadesFuncionales()) {
 			switch (uf.getCodigo()) {
 				case UnidadFuncional.UF_COCHE: {

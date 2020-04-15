@@ -1,4 +1,5 @@
 package com.proeza.conad.entity;
+//Generated Apr 15, 2020, 12:37:31 PM by Hibernate Tools 5.2.12.Final
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -32,6 +33,7 @@ public class Propietario implements Serializable {
 	private Usuario					usuario;
 	private Cuenta					cuenta;
 	private Set<UnidadFuncional>	unidadesFuncionales	= new HashSet<UnidadFuncional>(0);
+	private Set<Pago>				pagos				= new HashSet<Pago>(0);
 
 	public Propietario () {
 	}
@@ -69,7 +71,8 @@ public class Propietario implements Serializable {
 
 	@WhereJoinTable(clause = "habilitado = 1")
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "cad_uf_propietario",
+	@JoinTable(
+		name = "cad_uf_propietario",
 		joinColumns = {@JoinColumn(name = "fk_propietario")},
 		inverseJoinColumns = {@JoinColumn(name = "fk_uf")})
 	public Set<UnidadFuncional> getUnidadesFuncionales () {
@@ -78,5 +81,18 @@ public class Propietario implements Serializable {
 
 	public void setUnidadesFuncionales (Set<UnidadFuncional> unidadesFuncionales) {
 		this.unidadesFuncionales = unidadesFuncionales;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+		name = "cad_pago_propietario",
+		joinColumns = {@JoinColumn(name = "fk_propietario")},
+		inverseJoinColumns = {@JoinColumn(name = "fk_pago")})
+	public Set<Pago> getPagos () {
+		return this.pagos;
+	}
+
+	public void setPagos (Set<Pago> pagos) {
+		this.pagos = pagos;
 	}
 }

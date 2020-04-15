@@ -31,7 +31,7 @@ public abstract class Persona implements java.io.Serializable {
 	private String				email;
 	private String				sexo;
 	private Boolean				habilitado;
-	private Documento			documento;
+	private DocumentoIdentidad			documento;
 	private Telefono			telefono;
 	private Foto				foto;
 
@@ -68,11 +68,11 @@ public abstract class Persona implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_documento")
-	public Documento getDocumento () {
+	public DocumentoIdentidad getDocumento () {
 		return this.documento;
 	}
 
-	public void setDocumento (Documento documento) {
+	public void setDocumento (DocumentoIdentidad documento) {
 		this.documento = documento;
 	}
 

@@ -1,11 +1,12 @@
 package com.proeza.conad.entity;
-// Generated Apr 11, 2020, 7:13:39 PM by Hibernate Tools 5.2.12.Final
+// Generated Apr 15, 2020, 12:37:31 PM by Hibernate Tools 5.2.12.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -17,10 +18,10 @@ import static javax.persistence.GenerationType.*;
 
 @Entity
 @Immutable
-@Table(name = "cad_uf_tipo")
 @NaturalIdCache
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
-public class TipoUnidadFuncional implements java.io.Serializable {
+@Table(name = "cad_expensa_tipo", uniqueConstraints = @UniqueConstraint(columnNames = "nombre"))
+public class ExpensaTipo implements java.io.Serializable {
 
 	private static final long	serialVersionUID	= 1L;
 
@@ -28,15 +29,21 @@ public class TipoUnidadFuncional implements java.io.Serializable {
 	private String				nombre;
 	private String				descripcion;
 
-	public TipoUnidadFuncional () {
+	public ExpensaTipo () {
 	}
 
-	public TipoUnidadFuncional (String nombre) {
+	public ExpensaTipo (String nombre) {
 		this.nombre = nombre;
+	}
+
+	public ExpensaTipo (String nombre, String descripcion) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	public Long getId () {
 		return this.id;
 	}
@@ -46,7 +53,7 @@ public class TipoUnidadFuncional implements java.io.Serializable {
 	}
 
 	@NaturalId
-	@Column(name = "nombre", nullable = false, length = 45)
+	@Column(name = "nombre", unique = true, nullable = false, length = 45)
 	public String getNombre () {
 		return this.nombre;
 	}

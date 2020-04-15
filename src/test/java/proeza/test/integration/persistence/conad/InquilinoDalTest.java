@@ -21,6 +21,6 @@ public class InquilinoDalTest extends IntegrationTest {
 		assertNotNull(inquilino);
 		assertNotNull(inquilino.getUnidadesFuncionales());
 		assertEquals(1, inquilino.getUnidadesFuncionales().size());
-		assertEquals("22", inquilino.getUnidadesFuncionales().iterator().next().getCodigo());
+		assertEquals("23", inquilino.getUnidadesFuncionales().iterator().next().getCodigo());
 	}
 }

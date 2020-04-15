@@ -28,7 +28,7 @@ public class TipoDocumento implements java.io.Serializable {
 	private String				codigo;
 	private String				nombre;
 	private String				descripcion;
-	private Set<Documento>		documentos			= new HashSet<Documento>(0);
+	private Set<DocumentoIdentidad>		documentos			= new HashSet<DocumentoIdentidad>(0);
 
 	public TipoDocumento () {
 	}
@@ -38,7 +38,7 @@ public class TipoDocumento implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	public TipoDocumento (String codigo, String nombre, String descripcion, Set<Documento> documentos) {
+	public TipoDocumento (String codigo, String nombre, String descripcion, Set<DocumentoIdentidad> documentos) {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -85,11 +85,11 @@ public class TipoDocumento implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoDocumento")
-	public Set<Documento> getDocumentos () {
+	public Set<DocumentoIdentidad> getDocumentos () {
 		return this.documentos;
 	}
 
-	public void setDocumentos (Set<Documento> documentos) {
+	public void setDocumentos (Set<DocumentoIdentidad> documentos) {
 		this.documentos = documentos;
 	}
 
