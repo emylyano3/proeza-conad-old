@@ -16,13 +16,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.WhereJoinTable;
 
 import com.proeza.core.entity.Direccion;
 
 @Entity
-@Table(name = "cad_consorcio")
+@Table(name = "cad_consorcio", uniqueConstraints = @UniqueConstraint(columnNames = "nombre"))
 public class Consorcio implements java.io.Serializable {
 
 	private static final long		serialVersionUID	= 1L;
@@ -31,7 +33,7 @@ public class Consorcio implements java.io.Serializable {
 	private String					nombre;
 	private String					descripcion;
 	private String					email;
-	private boolean					habilitado;
+	private boolean					habilitado			= true;
 	private Direccion				direccion;
 	private Set<Consorcista>		consorcistas		= new HashSet<Consorcista>(0);
 	private Set<UnidadFuncional>	unidadesFuncionales	= new HashSet<UnidadFuncional>(0);
@@ -68,6 +70,7 @@ public class Consorcio implements java.io.Serializable {
 		this.direccion = direccion;
 	}
 
+	@NaturalId
 	@Column(name = "nombre", nullable = false, length = 45)
 	public String getNombre () {
 		return this.nombre;

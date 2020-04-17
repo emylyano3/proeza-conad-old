@@ -1,5 +1,7 @@
 package com.proeza.sgs.web.handler;
 
+import javax.persistence.PersistenceException;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -7,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -15,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.Builder;
 import lombok.Getter;
 
 /**
@@ -41,26 +45,48 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 	private ErrorTracker		errorTracker;
 
 	@ExceptionHandler({ResponseStatusException.class})
-	public ResponseEntity<Object> responseStatusException (final ResponseStatusException e, final WebRequest request) {
+	public ResponseEntity<Object> responseStatusException (final ResponseStatusException e, final WebRequest r) {
 		log.info(String.format("Handling exception %s", e.getClass().getSimpleName()));
 		this.errorTracker.trackError(e);
-		return handleExceptionInternal(e, new RestResponseDTO(e).asJson(), new HttpHeaders(), e.getStatus(), request);
+		return handleExceptionInternal(e,
+			RestExceptionResponseDTO
+				.builder()
+				.status(e.getStatus().value())
+				.reason(e.getReason())
+				.url(((ServletWebRequest) r).getRequest().getRequestURI())
+				.build()
+				.asJson(),
+			new HttpHeaders(),
+			e.getStatus(),
+			r);
+	}
+
+	@ExceptionHandler({PersistenceException.class})
+	public ResponseEntity<Object> sqlException (final PersistenceException e, final WebRequest r) {
+		log.info(String.format("Handling exception %s", e.getClass().getSimpleName()));
+		this.errorTracker.trackError(e);
+		return handleExceptionInternal(e,
+			RestExceptionResponseDTO
+				.builder()
+				.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+				.reason(e.getMessage())
+				.url(((ServletWebRequest) r).getRequest().getRequestURI())
+				.build()
+				.asJson(),
+			new HttpHeaders(),
+			HttpStatus.INTERNAL_SERVER_ERROR,
+			r);
 	}
 
 	@Getter
+	@Builder
 	@JsonInclude(JsonInclude.Include.NON_EMPTY)
-	class RestResponseDTO {
-		int status;
-		String reason;
-		String detail;
+	static class RestExceptionResponseDTO {
+		int		status;
+		String	reason;
+		String	url;
 
-		public RestResponseDTO (ResponseStatusException e) {
-			super();
-			this.status = e.getStatus().value();
-			this.reason = e.getReason();
-		}
-
-		public String asJson() {
+		public String asJson () {
 			try {
 				return new ObjectMapper().writeValueAsString(this);
 			} catch (JsonProcessingException e) {

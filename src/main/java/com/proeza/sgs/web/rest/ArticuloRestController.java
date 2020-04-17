@@ -3,6 +3,7 @@ package com.proeza.sgs.web.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -39,7 +40,7 @@ import com.proeza.sgs.web.handler.ErrorTracker;
 
 @CrossOrigin
 @RestController
-@RequestMapping("rest/product")
+@RequestMapping("rest/product/**")
 public class ArticuloRestController {
 
 	private static final Logger log             = Logger.getLogger(ArticuloRestController.class);
@@ -78,7 +79,7 @@ public class ArticuloRestController {
 	}
 
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
-	@ExceptionHandler(DataRetrievalFailureException.class)
+	@ExceptionHandler({DataRetrievalFailureException.class, NoResultException.class})
 	public ErrorInfo notFound(HttpServletRequest request, Exception e) {
 		this.errorTracker.trackError(e);
 		ErrorInfo errorInfo = new ErrorInfo(request.getRequestURL().toString(), this.messageResolver.getMessage(NOTFOUND_ERROR, request));
