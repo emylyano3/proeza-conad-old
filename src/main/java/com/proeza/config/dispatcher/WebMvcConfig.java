@@ -15,9 +15,8 @@ import com.proeza.sgs.web.interceptor.UserLoggedInterceptor;
 
 @Configuration
 @ComponentScan(basePackages = {
-	"com.proeza.sgs.web",
-	"com.proeza.security.rest",
-	"com.proeza.system.rest"
+	"com.proeza.**.web",
+	"com.proeza.**.rest"
 })
 @EnableWebMvc
 @EnableTransactionManagement

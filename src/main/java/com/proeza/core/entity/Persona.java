@@ -31,7 +31,7 @@ public abstract class Persona implements java.io.Serializable {
 	private String				email;
 	private String				sexo;
 	private Boolean				habilitado;
-	private DocumentoIdentidad			documento;
+	private DocumentoIdentidad	documento;
 	private Telefono			telefono;
 	private Foto				foto;
 

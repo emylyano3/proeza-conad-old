@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.proeza.security.dto.UsuarioDTO;
 import com.proeza.security.service.IUserService;
 
 public class UserLoggedInterceptor implements HandlerInterceptor {
@@ -29,8 +28,7 @@ public class UserLoggedInterceptor implements HandlerInterceptor {
          * Una invocacion a un servicio REST
          */
         if (model != null && (principal = request.getUserPrincipal()) != null) {
-            UsuarioDTO user = this.userService.findByAlias(principal.getName());
-            model.addObject("user", user);
+            model.addObject("user", this.userService.findByAlias(principal.getName()));
         }
     }
 
