@@ -13,15 +13,17 @@ import javax.persistence.metamodel.SingularAttribute;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class GenericDao {
+public class GenericDao implements IGenericDao {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
 
+	@Override
 	public <Entity> Entity find (Class<Entity> entityClass, Object id) {
 		return this.entityManager.find(entityClass, id);
 	}
 
+	@Override
 	public <Entity> List<Entity> findAll (Class<Entity> entityClass) {
 		@SuppressWarnings("unchecked")
 		final List<Entity> resultList = this.entityManager
@@ -40,6 +42,7 @@ public class GenericDao {
 		return this.entityManager.createQuery(criteria).getSingleResult();
 	}
 
+	@Override
 	public Long getNextId (Class<?> entityClass) {
 		Long id = (Long) this.entityManager
 			.createQuery(" select max(x.id) from " + entityClass.getName() + " x")
@@ -47,11 +50,13 @@ public class GenericDao {
 		return id == null ? 1 : ++id;
 	}
 
+	@Override
 	public <Entity> Entity persist (Entity entity) {
 		this.entityManager.persist(entity);
 		return entity;
 	}
 
+	@Override
 	public <Entity> Collection<Entity> persist (Collection<Entity> entities) {
 		for (Entity entity : entities) {
 			persist(entity);
@@ -59,10 +64,12 @@ public class GenericDao {
 		return entities;
 	}
 
+	@Override
 	public EntityManager getEntityManager () {
 		return this.entityManager;
 	}
 
+	@Override
 	public void delete (Object entity) {
 		this.entityManager.remove(entity);
 	}

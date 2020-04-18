@@ -23,7 +23,7 @@ import com.proeza.conad.entity.Consorcio;
 import com.proeza.conad.rest.RestResponseStatusExceptionBuilder;
 import com.proeza.conad.rest.dto.ConsorcioDTO;
 import com.proeza.core.entity.Direccion;
-import com.proeza.core.persistence.GenericDao;
+import com.proeza.core.persistence.IGenericDao;
 
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MappingException;
@@ -44,7 +44,7 @@ public class ConsorcioRestController {
 	private IConsorcioDao						consorcioDao;
 
 	@Autowired
-	private GenericDao							genericDao;
+	private IGenericDao							genericDao;
 
 	@Autowired
 	private MapperFacade						mapperFacade;

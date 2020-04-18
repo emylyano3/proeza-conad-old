@@ -36,7 +36,7 @@ import com.proeza.sgs.business.service.IMarcaService;
 import com.proeza.sgs.business.service.IRubroService;
 import com.proeza.sgs.business.service.ITipoService;
 import com.proeza.sgs.web.handler.ErrorInfo;
-import com.proeza.sgs.web.handler.ErrorTracker;
+import com.proeza.web.handler.ErrorTracker;
 
 @CrossOrigin
 @RestController

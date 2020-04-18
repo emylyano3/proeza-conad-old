@@ -9,6 +9,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 
+import com.proeza.conad.dao.IConsorcioDao;
+import com.proeza.core.persistence.IGenericDao;
 import com.proeza.core.resources.message.IMessageResolver;
 import com.proeza.core.resources.message.MessageResolver;
 import com.proeza.core.service.IErrorService;
@@ -52,6 +54,16 @@ public class UnitTestContext {
 	@Bean
 	public IVentaDao ventaDao () {
 		return Mockito.mock(IVentaDao.class);
+	}
+
+	@Bean
+	public IConsorcioDao consorcioDao () {
+		return Mockito.mock(IConsorcioDao.class);
+	}
+
+	@Bean
+	public IGenericDao genericDao () {
+		return Mockito.mock(IGenericDao.class);
 	}
 
 	@Bean
