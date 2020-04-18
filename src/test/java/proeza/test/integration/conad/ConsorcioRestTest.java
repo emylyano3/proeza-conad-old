@@ -64,4 +64,58 @@ public class ConsorcioRestTest extends WebMvcIntegrationTest {
 		assertNotNull(fetched.getDireccion());
 		assertEquals("Springfield", fetched.getDireccion().getLocalidad());
 	}
+
+	@Test
+	@Transactional
+	public void CRUD () throws Exception {
+		ConsorcioDTO c = new ConsorcioDTO();
+		c.setNombre("Consorcio");
+		c.setDescripcion("Consorcio Test");
+		c.setEmail("consorcio@gmail.com");
+		c.setHabilitado(true);
+		DireccionDTO d = new DireccionDTO();
+		d.setCalle("Calle Falsa");
+		d.setLocalidad("Springfield");
+		d.setPartido("Springfield");
+		d.setProvincia("Springfield");
+		d.setCodigoPostal("10001");
+		d.setNumero(123);
+		c.setDireccion(d);
+		// Creo el Consorcio
+		this.mockMvc
+			.perform(
+				post("/api/consorcios")
+					.contentType(MediaType.APPLICATION_JSON)
+					.content(new ObjectMapper().writeValueAsString(c)))
+			.andExpect(status().is2xxSuccessful());
+		// Consulto
+		this.mockMvc
+			.perform(get("/api/consorcios?id=3"))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(TestUtil.APPLICATION_JSON))
+			.andExpect(jsonPath("$.id", is(3)))
+			.andExpect(jsonPath("$.nombre", is("Consorcio")));
+		c.setDescripcion("Consorcio Test modificado");
+		c.setId(3L);
+		// Actualizo
+		this.mockMvc
+			.perform(
+				put("/api/consorcios")
+					.contentType(MediaType.APPLICATION_JSON)
+					.content(new ObjectMapper().writeValueAsString(c)))
+			.andExpect(status().is2xxSuccessful());
+		// Consulto
+		this.mockMvc
+			.perform(get("/api/consorcios?id=3"))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(TestUtil.APPLICATION_JSON))
+			.andExpect(jsonPath("$.id", is(3)))
+			.andExpect(jsonPath("$.descripcion", is("Consorcio Test modificado")));
+		// Elimino
+		this.mockMvc
+			.perform(delete("/api/consorcios?id=3"))
+			.andExpect(status().is2xxSuccessful());
+		// Verifico que no exista
+		assertNull(this.consorcioDao.find(3L));
+	}
 }
