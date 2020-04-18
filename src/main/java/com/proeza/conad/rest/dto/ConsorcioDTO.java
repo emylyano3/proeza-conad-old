@@ -15,6 +15,6 @@ public class ConsorcioDTO {
 	private String			nombre;
 	private String			descripcion;
 	private String			email;
-	private boolean			habilitado;
+	private boolean			habilitado	= true;
 	private DireccionDTO	direccion;
 }

@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.WhereJoinTable;
 
@@ -60,6 +62,7 @@ public class Consorcio implements java.io.Serializable {
 		this.id = id;
 	}
 
+	@Cascade(CascadeType.PERSIST)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_direccion", nullable = false)
 	public Direccion getDireccion () {

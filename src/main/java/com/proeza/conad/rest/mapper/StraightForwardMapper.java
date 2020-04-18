@@ -11,11 +11,18 @@ import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 
 @Component
-public class ConsorcioMapper extends ConfigurableMapper {
+public class StraightForwardMapper extends ConfigurableMapper {
 
 	@Override
 	protected void configure (MapperFactory factory) {
-		factory.classMap(Consorcio.class, ConsorcioDTO.class).byDefault().register();
-		factory.classMap(Direccion.class, DireccionDTO.class).byDefault().register();
+		factory
+			.classMap(Consorcio.class, ConsorcioDTO.class)
+			.exclude("direccion")
+			.byDefault()
+			.register();
+		factory
+			.classMap(Direccion.class, DireccionDTO.class)
+			.byDefault()
+			.register();
 	}
 }
