@@ -4,20 +4,24 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.metamodel.SingularAttribute;
 
 public interface Dao<Entity> {
 
-    Entity find (Object id);
+	Entity find (Object id);
 
-    List<Entity> findAll ();
+	@SuppressWarnings({"rawtypes"})
+	Entity findByAttribute (SingularAttribute att, Object value);
 
-    Entity persist (Entity entity);
+	List<Entity> findAll ();
 
-    Collection<Entity> persist (Collection<Entity> entities);
+	Entity persist (Entity entity);
 
-    void delete (Entity entity);
+	Collection<Entity> persist (Collection<Entity> entities);
 
-    EntityManager getEntityManager ();
+	void delete (Entity entity);
 
-    Long getNextId ();
+	EntityManager getEntityManager ();
+
+	Long getNextId ();
 }

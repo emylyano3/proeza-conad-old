@@ -1,4 +1,4 @@
-package proeza.test.unit.web;
+package proeza.test.unit.sgs;
 
 import java.util.Arrays;
 import java.util.HashSet;

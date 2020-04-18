@@ -1,4 +1,4 @@
-package proeza.test.unit.web;
+package proeza.test.unit.sgs;
 
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;

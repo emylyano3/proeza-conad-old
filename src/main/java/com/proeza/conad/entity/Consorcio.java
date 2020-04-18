@@ -20,7 +20,6 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.WhereJoinTable;
 
 import com.proeza.core.entity.Direccion;
@@ -73,7 +72,6 @@ public class Consorcio implements java.io.Serializable {
 		this.direccion = direccion;
 	}
 
-	@NaturalId
 	@Column(name = "nombre", nullable = false, length = 45)
 	public String getNombre () {
 		return this.nombre;

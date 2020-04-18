@@ -22,6 +22,7 @@ import com.proeza.conad.dao.IConsorcioDao;
 import com.proeza.conad.entity.Consorcio;
 import com.proeza.conad.rest.RestResponseStatusExceptionBuilder;
 import com.proeza.conad.rest.dto.ConsorcioDTO;
+import com.proeza.conad.rest.dto.DireccionDTO;
 import com.proeza.core.entity.Direccion;
 import com.proeza.core.persistence.IGenericDao;
 
@@ -55,7 +56,10 @@ public class ConsorcioRestController {
 	@GetMapping
 	public ConsorcioDTO find (@RequestParam Long id) {
 		try {
-			return this.mapperFacade.map(this.consorcioDao.find(id), ConsorcioDTO.class);
+			Consorcio c = this.consorcioDao.find(id);
+			ConsorcioDTO cdto = this.mapperFacade.map(c, ConsorcioDTO.class);
+			cdto.setDireccion(this.mapperFacade.map(c.getDireccion(), DireccionDTO.class));
+			return cdto;
 		} catch (NoResultException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("El consorcio con id %s no existe", id), e);
 		} catch (IllegalArgumentException e) {

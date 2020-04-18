@@ -1,4 +1,4 @@
-package proeza.test.unit.web.rest;
+package proeza.test.unit.sgs.rest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,8 +8,6 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import proeza.test.unit.web.WebMvcUnitTest;
-
 import com.proeza.core.util.date.DateUtil;
 import com.proeza.sgs.business.chart.venta.UserSalesChartDefinition;
 import com.proeza.sgs.business.service.IVentaChartService;
@@ -17,6 +15,8 @@ import com.proeza.sgs.business.service.IVentaChartService;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import proeza.test.unit.sgs.WebMvcUnitTest;
 
 public class VentaChartRestTest extends WebMvcUnitTest {
 

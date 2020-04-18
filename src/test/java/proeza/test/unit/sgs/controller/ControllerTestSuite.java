@@ -1,4 +1,4 @@
-package proeza.test.unit.web.controller;
+package proeza.test.unit.sgs.controller;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

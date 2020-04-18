@@ -44,8 +44,9 @@ public abstract class BaseDao<Entity> implements Dao<Entity> {
         return resultList;
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    protected Entity findByAttribute(SingularAttribute att, Object value) {
+    @Override
+	@SuppressWarnings({"rawtypes", "unchecked"})
+    public Entity findByAttribute(SingularAttribute att, Object value) {
         CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
         CriteriaQuery<Entity> criteria = builder.createQuery(getEntityClass());
         Root<Entity> root = criteria.from(getEntityClass());

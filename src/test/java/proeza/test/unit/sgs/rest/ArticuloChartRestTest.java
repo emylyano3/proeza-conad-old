@@ -1,4 +1,4 @@
-package proeza.test.unit.web.rest;
+package proeza.test.unit.sgs.rest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import proeza.test.unit.TestUtil;
-import proeza.test.unit.web.WebMvcUnitTest;
+import proeza.test.unit.sgs.WebMvcUnitTest;
 
 public class ArticuloChartRestTest extends WebMvcUnitTest {
 
