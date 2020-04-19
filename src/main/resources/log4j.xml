@@ -6,12 +6,19 @@
 	<appender name="sistema" class="org.apache.log4j.AsyncAppender">
 		<param name="BufferSize" value="5096" />
 		<appender-ref ref="sistema-rolling" />
+		<appender-ref ref="sistema-console" />
 	</appender>
 
 	<appender name="sistema-rolling" class="org.apache.log4j.RollingFileAppender">
 		<param name="File" value="/logs/proeza/sistema.log" />
 		<param name="MaxFileSize" value="1MB" />
 		<param name="MaxBackupIndex" value="5" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %d{HH:mm:ss,SSS} [%t] %C: %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="sistema-console" class="org.apache.log4j.ConsoleAppender">
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%-5p %d{HH:mm:ss,SSS} [%t] %C: %m%n" />
 		</layout>
